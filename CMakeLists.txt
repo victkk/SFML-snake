@@ -17,6 +17,11 @@ target_compile_features(main PRIVATE cxx_std_17)
 add_executable(test src/test.cpp)
 target_link_libraries(test PRIVATE sfml-graphics)
 target_compile_features(test PRIVATE cxx_std_17)
+
+add_executable(snake src/snake_test.cpp src/entity/snake.cpp src/utils.cpp)
+target_link_libraries(snake PRIVATE sfml-graphics)
+target_compile_features(snake PRIVATE cxx_std_17)
+
 if(WIN32)
     add_custom_command(
         TARGET main

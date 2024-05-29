@@ -132,20 +132,21 @@ void Tetris::draw()
   window->display();
 }
 
+// main function of the game
 void Tetris::run()
 {
   while (window->isOpen())
   {
-    events();
+    events(); // Set states according to keyboard action
     if (!gameover)
     {
-      changePosition();
+      changePosition(); // act according to states
       setRotate();
       moveToDown();
       setScore();
-      resetValues();
+      resetValues(); // reset states
     }
-    draw();
+    draw(); // draw
   }
 }
 
