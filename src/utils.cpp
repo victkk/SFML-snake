@@ -20,3 +20,48 @@ sf::Vector2f normalize(const sf::Vector2f &v)
     }
     return sf::Vector2f(0, 0);
 }
+sf::Vector2f operator*(const sf::Vector2f &v, float scalar)
+{
+    return sf::Vector2f(v.x * scalar, v.y * scalar);
+}
+
+sf::Vector2f operator*(float scalar, const sf::Vector2f &v)
+{
+    return v * scalar; // 利用了前一个运算符重载
+}
+
+sf::Texture createGradientTexture(unsigned int width, unsigned int height, sf::Color startColor, sf::Color endColor)
+{
+    sf::Image image;
+    image.create(width, height);
+
+    for (unsigned int x = 0; x < width; ++x)
+    {
+        float ratio = static_cast<float>(x) / static_cast<float>(width - 1);
+        sf::Color color(
+            static_cast<sf::Uint8>(startColor.r * (1 - ratio) + endColor.r * ratio),
+            static_cast<sf::Uint8>(startColor.g * (1 - ratio) + endColor.g * ratio),
+            static_cast<sf::Uint8>(startColor.b * (1 - ratio) + endColor.b * ratio),
+            static_cast<sf::Uint8>(startColor.a * (1 - ratio) + endColor.a * ratio));
+
+        for (unsigned int y = 0; y < height; ++y)
+        {
+            image.setPixel(x, y, color);
+        }
+    }
+
+    sf::Texture texture;
+    texture.loadFromImage(image);
+    return texture;
+}
+
+template <typename T>
+T square(T x)
+{
+    return x * x;
+}
+
+float V2fDist(sf::Vector2f a, sf::Vector2f b)
+{
+    return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
+}
