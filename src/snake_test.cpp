@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 13:06:26
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-29 13:32:22
+ * @LastEditTime: 2024-05-29 23:38:53
  * @FilePath: \tetris-online\src\snake_test.cpp
  * @Description:
  *
@@ -10,15 +10,17 @@
  */
 #include <SFML/Graphics.hpp>
 #include "entity/snake.hpp"
+#include "entity/snakeManager.hpp"
+sf::Time timePerFrame = sf::seconds(1.0f / 100.0f);
 
 int main()
 {
     // 创建一个视频模式对象
     sf::VideoMode videoMode(800, 600);
-    Snake snake;
+    SnakeManager snakeManager;
     // 创建一个窗口
-    sf::RenderWindow window(videoMode, "SFML Game Framework");
-    sf::Time timePerFrame = sf::seconds(1.0f / 60.0f);
+    sf::RenderWindow window(videoMode, "SFML SNAKE");
+
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     // 主循环运行，直到窗口关闭
@@ -31,19 +33,27 @@ int main()
 
         // 清除窗口（用黑色填充）
 
-        while (timeSinceLastUpdate > timePerFrame)
+        if (timeSinceLastUpdate > timePerFrame)
         {
             timeSinceLastUpdate -= timePerFrame;
-            snake.handleInput(window);
-            snake.update();
+            snakeManager.handleInput(window);
+            snakeManager.update();
+            window.clear(sf::Color::Black);
+            snakeManager.render(window);
+            window.display();
         }
-        window.clear(sf::Color::Black);
-        snake.render(window);
-        // 在这里添加更多的绘制调用
-        // 例如: window.draw(someDrawableObject);
+        while (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case sf::Event::Closed:
+                window.close();
+                break;
 
-        // 显示已经绘制的内容
-        window.display();
+            default:
+                break;
+            }
+        }
     }
 
     return 0;
