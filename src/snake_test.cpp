@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 13:06:26
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 15:12:30
+ * @LastEditTime: 2024-05-30 19:12:13
  * @FilePath: \tetris-online\src\snake_test.cpp
  * @Description:
  *
@@ -25,6 +25,7 @@ int main()
     sf::RenderWindow window(videoMode, "SFML SNAKE");
 
     sf::Clock clock;
+    sf::Clock test_clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     // 主循环运行，直到窗口关闭
     while (window.isOpen())
@@ -38,16 +39,21 @@ int main()
 
         if (timeSinceLastUpdate > timePerFrame)
         {
-            std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
+            // std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
             timeSinceLastUpdate -= timePerFrame;
-
+            sf::Time elapsed1 = test_clock.restart();
             snakeManager.handleInput(window);
+
+            
             snakeManager.update();
+
             foodManager.update(snakeManager.getSnakes());
             window.clear(sf::Color::Black);
             snakeManager.render(window);
             foodManager.render(window);
             window.display();
+            elapsed1 = test_clock.restart();
+            std::cout << elapsed1.asSeconds() << std::endl;
             while (window.pollEvent(event))
             {
                 switch (event.type)

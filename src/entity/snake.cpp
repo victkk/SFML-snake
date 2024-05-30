@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 19:04:43
+ * @LastEditTime: 2024-05-30 19:07:40
  * @FilePath: \tetris-online\src\entity\snake.cpp
  * @Description:
  *
@@ -104,7 +104,7 @@ void Snake::grow(int size)
 {
     for (int i = 0; i < size; i++)
     {
-        snakeBody.push_front( snakeBody[0]);
+        snakeBody.push_front(snakeBody[0]);
     }
 }
 
