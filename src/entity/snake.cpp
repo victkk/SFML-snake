@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 19:07:40
+ * @LastEditTime: 2024-05-30 20:11:06
  * @FilePath: \tetris-online\src\entity\snake.cpp
  * @Description:
  *
@@ -65,7 +65,8 @@ void Snake::handleInput(sf::RenderWindow &window)
     {
         sf::Vector2f headPos = snakeBody.at(snakeBody.size() - 1);
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        direction = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
+        sf::Vector2f relativePos = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
+        direction = turnWithBound(direction,relativePos,5);
     }
 }
 void Snake::autoDrive()

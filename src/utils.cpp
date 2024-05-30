@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 14:07:43
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 19:28:12
+ * @LastEditTime: 2024-05-30 20:12:05
  * @FilePath: \tetris-online\src\utils.cpp
  * @Description:
  *
@@ -61,15 +61,60 @@ T square(T x)
     return x * x;
 }
 
-float V2fDist(sf::Vector2f a, sf::Vector2f b)
-{
-    return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
-}
-
 float V2fMhtDist(sf::Vector2f a, sf::Vector2f b)
 {
     return std::abs(a.x - b.x) + std::abs(a.y - b.y);
 }
+
+float V2fDist(const sf::Vector2f &a, const sf::Vector2f &b)
+{
+    return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
+}
+sf::Vector2f turnWithBound(sf::Vector2f &current, sf::Vector2f &target, float angleBound)
+{
+    float angle = calculateAngleDifference(target,current);
+    if (abs(angle) > angleBound)
+    {
+        return rotateVector(current, angleBound * (angle > 0 ? 1 : -1));
+    }
+    else
+    {
+        return rotateVector(current, angle);
+    }
+}
+double vectorAngle(const sf::Vector2f &vec)
+{
+    return std::atan2(vec.y, vec.x) * 180.0 / std::acos(-1.0);
+}
+sf::Vector2f rotateVector(const sf::Vector2f &vec, float angle)
+{
+    // 将角度转换为弧度
+    float radians = angle * std::acos(-1.0) / 180.0f;
+
+    // 计算旋转后的新坐标
+    float cosTheta = std::cos(radians);
+    float sinTheta = std::sin(radians);
+    float xNew = vec.x * cosTheta - vec.y * sinTheta;
+    float yNew = vec.x * sinTheta + vec.y * cosTheta;
+
+    return sf::Vector2f(xNew, yNew);
+}
+// Function to calculate the angle difference between two vectors
+double calculateAngleDifference(const sf::Vector2f &vec1, const sf::Vector2f &vec2)
+{
+    double angle1 = vectorAngle(vec1);
+    double angle2 = vectorAngle(vec2);
+    double diff = angle1 - angle2;
+
+    // Normalize the angle difference to be within [-180, 180]
+    while (diff > 180.0)
+        diff -= 360.0;
+    while (diff < -180.0)
+        diff += 360.0;
+
+    return diff;
+}
+
 std::map<int, sf::Color> colorMap = {
     {0, sf::Color::Red},
     {1, sf::Color::Green},
