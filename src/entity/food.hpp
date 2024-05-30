@@ -17,4 +17,5 @@ public:
     void render(sf::RenderWindow &window);
     bool update(Snake &snake); // return dist from snakehead
     int getScore();
+    void reborn();
 };

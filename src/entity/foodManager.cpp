@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:58
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 13:09:20
+ * @LastEditTime: 2024-05-30 19:24:22
  * @FilePath: \tetris-online\src\entity\foodManager.cpp
  * @Description:
  *
@@ -40,17 +40,11 @@ void FoodManager::update(std::vector<Snake> &snakes)
 
                 isEaten = true;
                 snake.grow(food_ptr->getScore());
-                food_ptr = foods.erase(food_ptr);
+                food_ptr->reborn();
                 break;
             }
         }
         if (!isEaten)
             food_ptr++;
-    }
-    // create food
-    if (cnt++ * foodBornSpeed > 1 / timePerFrame.asSeconds())
-    {
-        cnt = 0;
-        foods.emplace_back();
     }
 }
