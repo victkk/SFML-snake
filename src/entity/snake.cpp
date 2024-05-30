@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-29 23:45:08
+ * @LastEditTime: 2024-05-30 19:04:43
  * @FilePath: \tetris-online\src\entity\snake.cpp
  * @Description:
  *
@@ -26,7 +26,7 @@ void Snake::render(sf::RenderWindow &window)
     int cnt = 0;
     for (const auto &segment : snakeBody)
     {
-        if (cnt++ % 10 == 0)
+        if ((snakeBody.size() - cnt++) % 10 == 0) // to make sure the first node is always displayed
         {
             sf::CircleShape circle(kNodeDist * 10 * 0.7);
             circle.setPosition(segment);
@@ -96,7 +96,7 @@ void Snake::update()
 }
 void Snake::move()
 {
-    snakeBody.erase(snakeBody.begin());
+    snakeBody.pop_front();
     snakeBody.push_back(snakeBody.at(snakeBody.size() - 1) + kNodeDist * normalize(direction));
 }
 
@@ -104,7 +104,7 @@ void Snake::grow(int size)
 {
     for (int i = 0; i < size; i++)
     {
-        snakeBody.insert(snakeBody.begin(), snakeBody[0]);
+        snakeBody.push_front( snakeBody[0]);
     }
 }
 

@@ -9,7 +9,7 @@ class Snake
 {
 private:
     float kNodeDist;
-    std::vector<sf::Vector2f> snakeBody;
+    std::deque<sf::Vector2f> snakeBody;
     sf::Vector2f direction;
     int speed;
     sf::Texture texture;
@@ -17,7 +17,7 @@ private:
     int initial_x, initial_y;
 
 public:
-    Snake(bool humanPlayer,int initial_x,int initial_y);
+    Snake(bool humanPlayer, int initial_x, int initial_y);
 
     void update();
     void render(sf::RenderWindow &window);
