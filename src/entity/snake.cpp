@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 20:11:06
+ * @LastEditTime: 2024-05-30 20:30:12
  * @FilePath: \tetris-online\src\entity\snake.cpp
  * @Description:
  *
@@ -13,7 +13,8 @@
 Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{humanPlayer}, initial_x{initial_x}, initial_y{initial_y}
 {
     kNodeDist = 1;
-    speed = 30;
+    speed = 1;
+    maxAngularVelocity = 300;
     direction = sf::Vector2f(1, 1);
     texture = createGradientTexture(20, 20, sf::Color::Red, sf::Color::Blue);
     for (int i = 0; i < 200; i++)
@@ -51,6 +52,10 @@ void Snake::handleInput(sf::RenderWindow &window)
 {
     sf::Event event;
     // Sprint();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        speed = 2;
+    else
+        speed = 1;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         direction = sf::Vector2f(-1, 0);
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -59,14 +64,12 @@ void Snake::handleInput(sf::RenderWindow &window)
         direction = sf::Vector2f(0, 1);
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         direction = sf::Vector2f(1, 0);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
-        grow(2);
     else if (sf::Event::GainedFocus && sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         sf::Vector2f headPos = snakeBody.at(snakeBody.size() - 1);
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         sf::Vector2f relativePos = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
-        direction = turnWithBound(direction,relativePos,5);
+        direction = turnWithBound(direction, relativePos, speed * maxAngularVelocity * timePerFrame.asSeconds());
     }
 }
 void Snake::autoDrive()
@@ -97,8 +100,11 @@ void Snake::update()
 }
 void Snake::move()
 {
-    snakeBody.pop_front();
-    snakeBody.push_back(snakeBody.at(snakeBody.size() - 1) + kNodeDist * normalize(direction));
+    for (int i = 0; i < speed; i++)
+    {
+        snakeBody.pop_front();
+        snakeBody.push_back(snakeBody.at(snakeBody.size() - 1) + kNodeDist * normalize(direction));
+    }
 }
 
 void Snake::grow(int size)

@@ -15,6 +15,7 @@ private:
     sf::Texture texture;
     bool humanPlayer;
     int initial_x, initial_y;
+    float maxAngularVelocity;
 
 public:
     Snake(bool humanPlayer, int initial_x, int initial_y);

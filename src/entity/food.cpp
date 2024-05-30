@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 19:28:52
+ * @LastEditTime: 2024-05-30 20:31:25
  * @FilePath: \tetris-online\src\entity\food.cpp
  * @Description:
  *
@@ -14,7 +14,7 @@ Food::Food()
 {
     score = std::rand() % 5;
     pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
-    velocity = 200; // pixel per second
+    velocity = 300; // pixel per second
     radius = 2;
 }
 
