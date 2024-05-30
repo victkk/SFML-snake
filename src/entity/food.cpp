@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 15:11:35
+ * @LastEditTime: 2024-05-30 19:23:11
  * @FilePath: \tetris-online\src\entity\food.cpp
  * @Description:
  *
@@ -38,6 +38,9 @@ bool Food::update(Snake &snake)
         pos += velocity_vec;
     }
     return false;
+}
+void Food::reborn(){
+    pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
 }
 int Food::getScore()
 {
