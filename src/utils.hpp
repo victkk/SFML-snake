@@ -14,3 +14,4 @@ T square(T x);
 float V2fDist(sf::Vector2f a, sf::Vector2f b);
 
 extern std::map<int, sf::Color> colorMap;
+float V2fMhtDist(sf::Vector2f a, sf::Vector2f b);

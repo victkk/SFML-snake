@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 19:23:11
+ * @LastEditTime: 2024-05-30 19:28:52
  * @FilePath: \tetris-online\src\entity\food.cpp
  * @Description:
  *
@@ -27,7 +27,7 @@ void Food::render(sf::RenderWindow &window)
 }
 bool Food::update(Snake &snake)
 {
-    float dist = V2fDist(snake.getHead(), pos);
+    float dist = V2fMhtDist(snake.getHead(), pos);
     if (dist < 10)
     {
         return true;

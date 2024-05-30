@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 14:07:43
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-29 14:13:58
+ * @LastEditTime: 2024-05-30 19:28:12
  * @FilePath: \tetris-online\src\utils.cpp
  * @Description:
  *
@@ -66,6 +66,10 @@ float V2fDist(sf::Vector2f a, sf::Vector2f b)
     return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
 }
 
+float V2fMhtDist(sf::Vector2f a, sf::Vector2f b)
+{
+    return std::abs(a.x - b.x) + std::abs(a.y - b.y);
+}
 std::map<int, sf::Color> colorMap = {
     {0, sf::Color::Red},
     {1, sf::Color::Green},
