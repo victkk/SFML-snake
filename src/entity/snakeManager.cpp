@@ -64,3 +64,7 @@ void SnakeManager::deathJudge()
         }
     }
 }
+std::vector<Snake> &SnakeManager::getSnakes()
+{
+    return snakes;
+}

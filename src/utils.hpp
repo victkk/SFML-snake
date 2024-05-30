@@ -1,5 +1,7 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <map>
 sf::Vector2f normalize(const sf::Vector2f &v);
 sf::Vector2f operator*(const sf::Vector2f &v, float scalar);
 sf::Vector2f operator*(float scalar, const sf::Vector2f &v);
@@ -10,3 +12,5 @@ template <typename T>
 T square(T x);
 
 float V2fDist(sf::Vector2f a, sf::Vector2f b);
+
+extern std::map<int, sf::Color> colorMap;

@@ -65,3 +65,10 @@ float V2fDist(sf::Vector2f a, sf::Vector2f b)
 {
     return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
 }
+
+std::map<int, sf::Color> colorMap = {
+    {0, sf::Color::Red},
+    {1, sf::Color::Green},
+    {2, sf::Color::Blue},
+    {3, sf::Color::Yellow},
+    {4, sf::Color::Magenta}};

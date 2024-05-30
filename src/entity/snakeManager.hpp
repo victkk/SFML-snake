@@ -12,4 +12,5 @@ public:
     void deathJudge();
     void render(sf::RenderWindow &window);
     void update();
+    std::vector<Snake>& getSnakes();
 };
