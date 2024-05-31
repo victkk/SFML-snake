@@ -10,22 +10,19 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp src/tetris.cpp)
-target_link_libraries(main PRIVATE sfml-graphics)
-target_compile_features(main PRIVATE cxx_std_17)
 
 add_executable(test src/test.cpp)
 target_link_libraries(test PRIVATE sfml-graphics)
 target_compile_features(test PRIVATE cxx_std_17)
 
-add_executable(snake src/snake_test.cpp src/entity/snake.cpp src/utils.cpp src/entity/snakeManager.cpp src/entity/snakeManager.hpp src/entity/food.hpp src/entity/food.cpp src/entity/foodManager.hpp src/entity/foodManager.cpp)
+add_executable(snake src/snake_test.cpp src/entity/snake.cpp src/utils.cpp src/entity/snakeManager.cpp src/entity/snakeManager.hpp src/entity/food.hpp src/entity/food.cpp src/entity/foodManager.hpp src/entity/foodManager.cpp src/screen/gameScreen.hpp src/screen/gameScreen.cpp src/screen/pauseScreen.hpp src/screen/pauseScreen.cpp src/screen/IScreen.hpp src/screen/screenManager.hpp src/screen/screenManager.cpp)
 target_link_libraries(snake PRIVATE sfml-graphics)
 target_compile_features(snake PRIVATE cxx_std_17)
 
 if(WIN32)
     add_custom_command(
-        TARGET main
+        TARGET snake
         COMMENT "Copy OpenAL DLL"
-        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:main>
+        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:snake>
         VERBATIM)
 endif()

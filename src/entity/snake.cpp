@@ -2,8 +2,8 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 20:52:19
- * @FilePath: \tetris-online\src\entity\snake.cpp
+ * @LastEditTime: 2024-05-31 12:44:37
+ * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
@@ -72,6 +72,7 @@ void Snake::handleInput(sf::RenderWindow &window)
         sf::Vector2f relativePos = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
         direction = turnWithBound(direction, relativePos, speed * maxAngularVelocity * timePerFrame.asSeconds());
     }
+    std::cout << speed;
 }
 void Snake::autoDrive()
 {
