@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 20:30:12
+ * @LastEditTime: 2024-05-30 20:52:19
  * @FilePath: \tetris-online\src\entity\snake.cpp
  * @Description:
  *
@@ -13,6 +13,7 @@
 Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{humanPlayer}, initial_x{initial_x}, initial_y{initial_y}
 {
     kNodeDist = 1;
+    bodyNodeNum = 10;
     speed = 1;
     maxAngularVelocity = 300;
     direction = sf::Vector2f(1, 1);
@@ -27,9 +28,9 @@ void Snake::render(sf::RenderWindow &window)
     int cnt = 0;
     for (const auto &segment : snakeBody)
     {
-        if ((snakeBody.size() - cnt++) % 10 == 0) // to make sure the first node is always displayed
+        if ((snakeBody.size() - cnt++) % bodyNodeNum == 0) // to make sure the first node is always displayed
         {
-            sf::CircleShape circle(kNodeDist * 10 * 0.7);
+            sf::CircleShape circle(kNodeDist * bodyNodeNum * 0.7);
             circle.setPosition(segment);
             circle.setTexture(&texture);
             window.draw(circle);
@@ -97,6 +98,7 @@ void Snake::autoDrive()
 void Snake::update()
 {
     move();
+    scaleUp();
 }
 void Snake::move()
 {
@@ -129,6 +131,7 @@ const sf::Vector2f &Snake::getHead()
 {
     return snakeBody[snakeBody.size() - 1];
 }
+
 // helper func for debugging
 void Snake::Sprint()
 {
@@ -137,4 +140,14 @@ void Snake::Sprint()
         std::cout << "(" << a.x << "," << a.y << ")";
     }
     std::cout << std::endl;
+}
+void Snake::scaleUp()
+{
+    int len = getNodeNum();
+    bodyNodeNum = 10 + len / 100;
+}
+
+int Snake::getNodeNum()
+{
+    return snakeBody.size();
 }

@@ -9,6 +9,7 @@ class Snake
 {
 private:
     float kNodeDist;
+    int bodyNodeNum;
     std::deque<sf::Vector2f> snakeBody;
     sf::Vector2f direction;
     int speed;
@@ -26,12 +27,14 @@ public:
     void setDirection(sf::RenderWindow &window);
     bool collision(sf::Vector2f point, float r);
     const sf::Vector2f &getHead();
+    int getNodeNum();
 
 private:
     void autoDrive();
     void move();
     void Sprint();
     void handleInput(sf::RenderWindow &window);
+    void scaleUp();
 };
 
 extern sf::Time timePerFrame;
