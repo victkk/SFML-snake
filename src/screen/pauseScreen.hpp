@@ -1,0 +1,13 @@
+#include "IScreen.hpp"
+
+class PauseScreen : public IScreen
+{
+private:
+public:
+    PauseScreen();
+    void handleInput(sf::RenderWindow &window) override;
+    void update() override;
+    void render(sf::RenderWindow &window) override;
+    void run(sf::RenderWindow &window) override;
+    SCREEN nextScreenLogic(sf::RenderWindow &window) override;
+};
