@@ -11,11 +11,8 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 
-add_executable(test src/test.cpp)
-target_link_libraries(test PRIVATE sfml-graphics)
-target_compile_features(test PRIVATE cxx_std_17)
-
-add_executable(snake src/snake_test.cpp src/entity/snake.cpp src/utils.cpp src/entity/snakeManager.cpp src/entity/snakeManager.hpp src/entity/food.hpp src/entity/food.cpp src/entity/foodManager.hpp src/entity/foodManager.cpp src/screen/gameScreen.hpp src/screen/gameScreen.cpp src/screen/pauseScreen.hpp src/screen/pauseScreen.cpp src/screen/IScreen.hpp src/screen/screenManager.hpp src/screen/screenManager.cpp)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+add_executable(snake ${SOURCES})
 target_link_libraries(snake PRIVATE sfml-graphics)
 target_compile_features(snake PRIVATE cxx_std_17)
 
