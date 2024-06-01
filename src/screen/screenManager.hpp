@@ -15,4 +15,5 @@ public:
 
 private:
     void nextScreenLogic();
+    void jumpTo(SCREEN screen);
 };

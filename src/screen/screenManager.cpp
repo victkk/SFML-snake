@@ -56,3 +56,6 @@ void ScreenManager::nextScreenLogic()
         break;
     }
 }
+void ScreenManager::jumpTo(SCREEN screen){
+
+}

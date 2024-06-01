@@ -1,8 +1,10 @@
 #include "IScreen.hpp"
-
+#include "../UI/button.hpp"
 class PauseScreen : public IScreen
 {
 private:
+    Button resumeButton;
+
 public:
     PauseScreen();
     void handleInput(sf::RenderWindow &window) override;
