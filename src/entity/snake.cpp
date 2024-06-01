@@ -26,13 +26,13 @@ Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{human
 void Snake::render(sf::RenderWindow &window)
 {
     int cnt = 0;
+    sf::CircleShape circle(kNodeDist * bodyNodeNum * 0.7);
+    circle.setTexture(&texture);
     for (const auto &segment : snakeBody)
     {
         if ((snakeBody.size() - cnt++) % bodyNodeNum == 0) // to make sure the first node is always displayed
         {
-            sf::CircleShape circle(kNodeDist * bodyNodeNum * 0.7);
             circle.setPosition(segment);
-            circle.setTexture(&texture);
             window.draw(circle);
         }
     }

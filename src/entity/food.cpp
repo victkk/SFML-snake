@@ -2,8 +2,8 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 20:31:25
- * @FilePath: \tetris-online\src\entity\food.cpp
+ * @LastEditTime: 2024-06-01 16:27:41
+ * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
@@ -39,7 +39,8 @@ bool Food::update(Snake &snake)
     }
     return false;
 }
-void Food::reborn(){
+void Food::reborn()
+{
     pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
 }
 int Food::getScore()

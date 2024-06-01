@@ -1,6 +1,6 @@
 
 #include "screenManager.hpp"
-ScreenManager::ScreenManager() : pauseScreen(), gameScreen(400), window(sf::VideoMode(800, 600), "SFML")
+ScreenManager::ScreenManager() : pauseScreen(), gameScreen(100), window(sf::VideoMode(800, 600), "SFML")
 {
     currentScreen = &gameScreen;
 }
@@ -9,12 +9,13 @@ void ScreenManager::run()
     sf::Clock clock;
     sf::Clock test_clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-
+    sf::Time logTime;
     // 主循环运行，直到窗口关闭
     while (window.isOpen())
     {
         // 事件处理
         sf::Time elapsedTime = clock.restart();
+
         timeSinceLastUpdate += elapsedTime;
         sf::Event event;
 
@@ -23,9 +24,13 @@ void ScreenManager::run()
 
             while (timeSinceLastUpdate > timePerFrame)
                 timeSinceLastUpdate -= timePerFrame;
-
+            logTime = test_clock.restart();
             currentScreen->run(window);
+            logTime = test_clock.restart();
+            std::cout << "currentScreen.run:" << logTime.asMilliseconds() << std::endl;
             nextScreenLogic();
+            logTime = test_clock.restart();
+            std::cout << "nextScreenLogic:" << logTime.asMilliseconds() << std::endl;
             while (window.pollEvent(event))
             {
                 switch (event.type)
@@ -38,6 +43,8 @@ void ScreenManager::run()
                     break;
                 }
             }
+            logTime = test_clock.restart();
+            std::cout << "pollevent:" << logTime.asMilliseconds() << std::endl;
         }
     }
 }
@@ -56,6 +63,6 @@ void ScreenManager::nextScreenLogic()
         break;
     }
 }
-void ScreenManager::jumpTo(SCREEN screen){
-
+void ScreenManager::jumpTo(SCREEN screen)
+{
 }
