@@ -7,6 +7,7 @@ private:
     sf::RectangleShape shape;
     sf::Text text;
     bool isHovered;
+    bool isClicked;
 
 public:
     // 构造函数：接收字体和按钮文本
@@ -26,6 +27,8 @@ public:
 
     // 获取按钮大小
     sf::Vector2f getSize() const;
+
+    bool getIsClicked() const;
 
 protected:
     // 绘制函数：绘制按钮到渲染目标

@@ -5,7 +5,7 @@ Button::Button(const std::string &buttonText)
     text.setString(buttonText);
     text.setFillColor(sf::Color::White);
     text.setCharacterSize(24);
-
+    isClicked = false;
     shape.setFillColor(sf::Color::Blue);
     shape.setSize({200, 50});
     // 使文字居中显示
@@ -13,12 +13,15 @@ Button::Button(const std::string &buttonText)
                                                         shape.getSize().y / 2 - text.getLocalBounds().height / 1.5));
 }
 
+bool Button::getIsClicked() const
+{
+    return isClicked;
+}
 void Button::update(sf::RenderWindow &window, const sf::Time &dt)
 {
     // 更新按钮状态：检测鼠标悬停状态
     auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
     isHovered = shape.getGlobalBounds().contains(mousePos);
-
     if (isHovered)
     {
         shape.setFillColor(sf::Color::Red); // 如果鼠标悬停在按钮上，则改变颜色
@@ -32,7 +35,12 @@ void Button::update(sf::RenderWindow &window, const sf::Time &dt)
     if (isHovered && sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         // 这里可以放置点击后的处理逻辑
+        isClicked = true;
         std::cout << "Button clicked!" << std::endl;
+    }
+    else
+    {
+        isClicked = false;
     }
 }
 
