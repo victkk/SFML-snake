@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-01 16:27:41
+ * @LastEditTime: 2024-06-02 10:31:46
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -14,7 +14,7 @@ Food::Food()
 {
     score = std::rand() % 5;
     pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
-    velocity = 300; // pixel per second
+    velocity = 500; // pixel per second
     radius = 2;
 }
 

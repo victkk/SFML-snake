@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-31 12:44:37
+ * @LastEditTime: 2024-06-02 10:32:44
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -12,7 +12,7 @@
 
 Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{humanPlayer}, initial_x{initial_x}, initial_y{initial_y}
 {
-    kNodeDist = 1;
+    kNodeDist = 1.5;
     bodyNodeNum = 10;
     speed = 1;
     maxAngularVelocity = 300;
