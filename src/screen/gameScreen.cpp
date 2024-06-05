@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-01 16:14:40
+ * @LastEditTime: 2024-06-05 18:04:57
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
@@ -44,14 +44,19 @@ void GameScreen::render(sf::RenderWindow &window)
 {
     sf::Clock test_clock;
     sf::Time logTime;
-    test_clock.restart();
     window.clear(sf::Color::Black);
+    snakeManager.followHumanPlayer(window);
+    test_clock.restart();
+
+    
     snakeManager.render(window);
     logTime = test_clock.restart();
     std::cout << "\t\tSMrender:" << logTime.asMicroseconds() << std::endl;
+
     foodManager.render(window);
     logTime = test_clock.restart();
     std::cout << "\t\tFMrender:" << logTime.asMicroseconds() << std::endl;
+
     window.display();
     logTime = test_clock.restart();
     std::cout << "\t\tdisplay:" << logTime.asMicroseconds() << std::endl;

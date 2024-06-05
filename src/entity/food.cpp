@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 17:30:49
+ * @LastEditTime: 2024-06-05 18:03:48
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -29,7 +29,7 @@ Food::Food(sf::Vertex *vertex) : vertex(vertex)
 bool Food::update(Snake &snake)
 {
     float dist = V2fMhtDist(snake.getHead(), pos);
-    if (dist < 10)
+    if (dist < 0)
     {
         reborn();
         vertex[0].position = pos;

@@ -36,7 +36,6 @@ public:
     std::deque<sf::Vector2f> const &getSnakeBody();
 
 private:
-    void autoDrive(std::vector<Snake> &snakes, int xMin, int xMax, int yMin, int yMax);
     void move();
     void Sprint();
     void scaleUp();

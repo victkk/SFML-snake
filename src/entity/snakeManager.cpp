@@ -1,8 +1,9 @@
+
 /*
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 14:58:41
+ * @LastEditTime: 2024-06-05 17:55:03
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -58,7 +59,7 @@ void SnakeManager::handleInput(sf::RenderWindow &window)
             {
                 sf::Vector2f headPos = snake.getHead();
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                sf::Vector2f relativePos = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
+                sf::Vector2f relativePos = sf::Vector2f(mousePos.x - 400, mousePos.y - 300);
                 snake.setDirection(turnWithBound(snake.getDirection(), relativePos, snake.getMaxAngularVelocity() * snake.getSpeed() * timePerFrame.asSeconds())); // speed * maxAngularVelocity * timePerFrame.asSeconds()
             }
         }
@@ -148,4 +149,17 @@ void SnakeManager::autoDrive(int xMin, int xMax, int yMin, int yMax)
             }
         }
     }
+}
+void SnakeManager::followHumanPlayer(sf::RenderWindow &window)
+{
+    sf::View view = window.getView();
+    for (auto snake : snakes)
+    {
+        if (snake.isHumanPlayer())
+        {
+            view.setCenter(snake.getHead());
+        }
+    }
+    window.setView(view);
+    return;
 }

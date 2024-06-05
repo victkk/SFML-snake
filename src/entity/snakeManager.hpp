@@ -21,7 +21,7 @@ private:
 public:
     SnakeManager();
     void handleInput(sf::RenderWindow &window);
-
+    void followHumanPlayer(sf::RenderWindow &window);
     void render(sf::RenderWindow &window);
     void update();
     std::vector<Snake> &getSnakes();
