@@ -1,3 +1,4 @@
+#pragma once
 #include "IScreen.hpp"
 #include "../UI/button.hpp"
 class PauseScreen : public IScreen

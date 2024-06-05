@@ -26,3 +26,4 @@ public:
     void update();
     std::vector<Snake> &getSnakes();
 };
+extern sf::Vector2i topLeft,buttomRight;

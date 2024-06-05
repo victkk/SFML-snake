@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:10:21
+ * @LastEditTime: 2024-06-05 18:12:14
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -28,7 +28,7 @@ void Snake::render(sf::RenderWindow &window)
     int cnt = 1;
     sf::CircleShape circle(kNodeDist * bodyNodeNum * 0.7);
     circle.setTexture(&texture);
-    circle.setOrigin(kNodeDist * bodyNodeNum * 0.7,kNodeDist * bodyNodeNum * 0.7);
+    circle.setOrigin(kNodeDist * bodyNodeNum * 0.7, kNodeDist * bodyNodeNum * 0.7);
     for (const auto &segment : snakeBody)
     {
         if ((snakeBody.size() - cnt) % bodyNodeNum == 0)
@@ -42,9 +42,9 @@ void Snake::render(sf::RenderWindow &window)
 
 void Snake::setDirection(sf::Vector2f direction)
 {
-    this->direction = direction;
+    if (direction.x != 0 || direction.y != 0)
+        this->direction = direction;
 }
-
 
 void Snake::update()
 {
@@ -137,4 +137,9 @@ sf::Vector2f Snake::getDirection()
 std::deque<sf::Vector2f> const &Snake::getSnakeBody()
 {
     return snakeBody;
+}
+
+float Snake::getRadius()
+{
+    return kNodeDist * bodyNodeNum * 0.7;
 }

@@ -2,13 +2,16 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:04:57
+ * @LastEditTime: 2024-06-05 19:10:40
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
  */
 #include "gameScreen.hpp"
+sf::Vector2i topLeft(0, 0);
+sf::Vector2i buttomRight(2400, 1800); // size of the map
+
 GameScreen::GameScreen(int foodNum) : foodManager(foodNum), snakeManager()
 {
 }
@@ -48,7 +51,6 @@ void GameScreen::render(sf::RenderWindow &window)
     snakeManager.followHumanPlayer(window);
     test_clock.restart();
 
-    
     snakeManager.render(window);
     logTime = test_clock.restart();
     std::cout << "\t\tSMrender:" << logTime.asMicroseconds() << std::endl;

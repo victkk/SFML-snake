@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:03:48
+ * @LastEditTime: 2024-06-05 18:51:05
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -13,7 +13,7 @@
 Food::Food(sf::Vertex *vertex) : vertex(vertex)
 {
     score = std::rand() % 5;
-    pos = sf::Vector2f(std::rand() % 800, std::rand() % 600);
+    pos = sf::Vector2f(std::rand() % buttomRight.x, std::rand() % buttomRight.y);
     velocity = 500; // pixel per second
     radius = 2;
     vertex[0].color = colorMap[score];
@@ -29,7 +29,7 @@ Food::Food(sf::Vertex *vertex) : vertex(vertex)
 bool Food::update(Snake &snake)
 {
     float dist = V2fMhtDist(snake.getHead(), pos);
-    if (dist < 0)
+    if (dist < snake.getRadius())
     {
         reborn();
         vertex[0].position = pos;
@@ -38,7 +38,7 @@ bool Food::update(Snake &snake)
         vertex[3].position = pos + sf::Vector2f(2, 0);
         return true;
     }
-    else if (dist < 50)
+    else if (dist < 5 * snake.getRadius())
     {
         sf::Vector2f velocity_vec = normalize(snake.getHead() - pos) * velocity * timePerFrame.asSeconds();
         pos += velocity_vec;
@@ -51,7 +51,7 @@ bool Food::update(Snake &snake)
 }
 void Food::reborn()
 {
-    pos = sf::Vector2f(std::rand() % 800, std::rand() %600);
+    pos = sf::Vector2f(std::rand() % buttomRight.x, std::rand() % buttomRight.y);
 }
 int Food::getScore()
 {

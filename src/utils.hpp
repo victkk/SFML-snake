@@ -1,3 +1,13 @@
+/*
+ * @Author: vic123 zhangzc_efz@163.com
+ * @Date: 2024-05-29 14:13:38
+ * @LastEditors: vic123 zhangzc_efz@163.com
+ * @LastEditTime: 2024-06-05 19:01:22
+ * @FilePath: \SFML-snake\src\utils.hpp
+ * @Description: 
+ * 
+ * Copyright (c) 2024 by vic123, All Rights Reserved. 
+ */
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <cmath>

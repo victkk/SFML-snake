@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 13:06:26
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:01:12
+ * @LastEditTime: 2024-06-05 18:14:30
  * @FilePath: \SFML-snake\src\snake_test.cpp
  * @Description:
  *
@@ -15,7 +15,7 @@
 #include "entity/foodManager.hpp"
 #include "screen/screenManager.hpp"
 
-sf::Time timePerFrame = sf::seconds(1.0f / 60.0f);
+sf::Time timePerFrame = sf::seconds(1.0f / 120.0f);
 
 int main()
 {

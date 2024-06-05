@@ -34,6 +34,7 @@ public:
     int getMaxAngularVelocity();
     sf::Vector2f getDirection();
     std::deque<sf::Vector2f> const &getSnakeBody();
+    float getRadius();
 
 private:
     void move();

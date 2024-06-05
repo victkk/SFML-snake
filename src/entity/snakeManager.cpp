@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 17:55:03
+ * @LastEditTime: 2024-06-05 19:27:34
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -22,7 +22,7 @@ void SnakeManager::update()
     {
         snake.update();
     }
-    autoDrive(100, 700, 100, 500);
+    autoDrive(topLeft.x, buttomRight.x, topLeft.y, buttomRight.y);
     deathJudge();
 }
 
@@ -101,6 +101,7 @@ void SnakeManager::autoDrive(int xMin, int xMax, int yMin, int yMax)
     {
         if (!snake.isHumanPlayer())
         {
+
             bool changed = false;
             sf::Vector2f closestPoint;
             float dist = 50;
@@ -141,11 +142,24 @@ void SnakeManager::autoDrive(int xMin, int xMax, int yMin, int yMax)
                         }
                 }
             }
+
             if (changed)
             {
                 sf::Vector2f headPos = snake.getSnakeBody().at(snake.getSnakeBody().size() - 1);
                 sf::Vector2f relativePos = sf::Vector2f(-closestPoint.x + headPos.x, -closestPoint.y + headPos.y);
                 snake.setDirection(turnWithBound(snake.getDirection(), relativePos, snake.getMaxAngularVelocity() * snake.getSpeed() * timePerFrame.asSeconds()));
+            }
+            else
+            {
+                if (std::rand() % 2000 < 2000 * timePerFrame.asSeconds())
+                {
+                    snake.setDirection(sf::Vector2f(std::rand() % 100 - 50, std::rand() % 100 - 50));
+                }
+
+                if (std::rand() % 2000 < 2000 * timePerFrame.asSeconds())
+                {
+                    snake.setSpeed(std::rand() % 2);
+                }
             }
         }
     }

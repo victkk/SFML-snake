@@ -1,3 +1,4 @@
+#pragma once
 #include "gameScreen.hpp"
 #include "pauseScreen.hpp"
 

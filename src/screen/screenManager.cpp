@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 17:25:11
+ * @LastEditTime: 2024-06-05 18:29:15
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -10,7 +10,7 @@
  */
 
 #include "screenManager.hpp"
-ScreenManager::ScreenManager() : pauseScreen(), gameScreen(100), window(sf::VideoMode(800, 600), "SFML")
+ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), window(sf::VideoMode(800, 600), "SFML")
 {
     currentScreen = &gameScreen;
 }

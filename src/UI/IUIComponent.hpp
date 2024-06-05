@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 
 // UIComponent是一个抽象基类，用于所有UI组件
