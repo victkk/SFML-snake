@@ -21,11 +21,11 @@ private:
     int velocity; // when eaten by snake, food flow to snake
     int score;    // also for color
     float radius;
+    sf::Vertex *vertex;
 
 public:
-    Food();
-    void render(sf::RenderWindow &window);
-    bool update(Snake &snake); // return dist from snakehead
+    Food(sf::Vertex *vertex);
+    bool update(Snake &snake);
     int getScore();
     void reborn();
 };

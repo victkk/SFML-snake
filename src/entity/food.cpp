@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-02 10:31:46
+ * @LastEditTime: 2024-06-05 17:23:03
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -10,38 +10,48 @@
  */
 #include "food.hpp"
 
-Food::Food()
+Food::Food(sf::Vertex *vertex) : vertex(vertex)
 {
     score = std::rand() % 5;
-    pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
+    pos = sf::Vector2f(std::rand() % 800, std::rand() % 600);
     velocity = 500; // pixel per second
     radius = 2;
+    // vertex[0].color = colorMap[score];
+    // vertex[1].color = colorMap[score];
+    // vertex[2].color = colorMap[score];
+    // vertex[3].color = colorMap[score];
+    vertex[0].position = pos;
+    vertex[1].position = pos + sf::Vector2f(0, 2);
+    vertex[2].position = pos + sf::Vector2f(2, 2);
+    vertex[3].position = pos + sf::Vector2f(2, 0);
 }
 
-void Food::render(sf::RenderWindow &window)
-{
-    sf::CircleShape circle(radius);
-    circle.setPosition(pos);
-    circle.setFillColor(colorMap[score]);
-    window.draw(circle);
-}
 bool Food::update(Snake &snake)
 {
     float dist = V2fMhtDist(snake.getHead(), pos);
     if (dist < 10)
     {
+        reborn();
+        vertex[0].position = pos;
+        vertex[1].position = pos + sf::Vector2f(0, 2);
+        vertex[2].position = pos + sf::Vector2f(2, 2);
+        vertex[3].position = pos + sf::Vector2f(2, 0);
         return true;
     }
-    if (dist < 50)
+    else if (dist < 50)
     {
         sf::Vector2f velocity_vec = normalize(snake.getHead() - pos) * velocity * timePerFrame.asSeconds();
         pos += velocity_vec;
+        vertex[0].position = pos;
+        vertex[1].position = pos + sf::Vector2f(0, 2);
+        vertex[2].position = pos + sf::Vector2f(2, 2);
+        vertex[3].position = pos + sf::Vector2f(2, 0);
     }
     return false;
 }
 void Food::reborn()
 {
-    pos = sf::Vector2f(std::rand() % 600, std::rand() % 800);
+    pos = sf::Vector2f(std::rand() % 800, std::rand() %600);
 }
 int Food::getScore()
 {
