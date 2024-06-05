@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:51:05
+ * @LastEditTime: 2024-06-05 20:44:23
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -21,9 +21,9 @@ Food::Food(sf::Vertex *vertex) : vertex(vertex)
     vertex[2].color = colorMap[score];
     vertex[3].color = colorMap[score];
     vertex[0].position = pos;
-    vertex[1].position = pos + sf::Vector2f(0, 2);
-    vertex[2].position = pos + sf::Vector2f(2, 2);
-    vertex[3].position = pos + sf::Vector2f(2, 0);
+    vertex[1].position = pos + sf::Vector2f(0, 4);
+    vertex[2].position = pos + sf::Vector2f(4, 4);
+    vertex[3].position = pos + sf::Vector2f(4, 0);
 }
 
 bool Food::update(Snake &snake)
@@ -33,9 +33,9 @@ bool Food::update(Snake &snake)
     {
         reborn();
         vertex[0].position = pos;
-        vertex[1].position = pos + sf::Vector2f(0, 2);
-        vertex[2].position = pos + sf::Vector2f(2, 2);
-        vertex[3].position = pos + sf::Vector2f(2, 0);
+        vertex[1].position = pos + sf::Vector2f(0, 4);
+        vertex[2].position = pos + sf::Vector2f(4, 4);
+        vertex[3].position = pos + sf::Vector2f(4, 0);
         return true;
     }
     else if (dist < 5 * snake.getRadius())
@@ -43,9 +43,9 @@ bool Food::update(Snake &snake)
         sf::Vector2f velocity_vec = normalize(snake.getHead() - pos) * velocity * timePerFrame.asSeconds();
         pos += velocity_vec;
         vertex[0].position = pos;
-        vertex[1].position = pos + sf::Vector2f(0, 2);
-        vertex[2].position = pos + sf::Vector2f(2, 2);
-        vertex[3].position = pos + sf::Vector2f(2, 0);
+        vertex[1].position = pos + sf::Vector2f(0, 4);
+        vertex[2].position = pos + sf::Vector2f(4, 4);
+        vertex[3].position = pos + sf::Vector2f(4, 0);
     }
     return false;
 }

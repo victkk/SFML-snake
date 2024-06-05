@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 18:12:14
+ * @LastEditTime: 2024-06-05 20:41:23
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -17,7 +17,9 @@ Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{human
     speed = 1;
     maxAngularVelocity = 300;
     direction = sf::Vector2f(1, 1);
-    texture = createGradientTexture(20, 20, sf::Color::Red, sf::Color::Blue);
+
+    texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
+
     for (int i = 0; i < 200; i++)
     {
         snakeBody.emplace_back(initial_x, initial_y);
