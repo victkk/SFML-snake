@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 19:10:40
+ * @LastEditTime: 2024-06-05 20:32:26
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
@@ -12,8 +12,10 @@
 sf::Vector2i topLeft(0, 0);
 sf::Vector2i buttomRight(2400, 1800); // size of the map
 
-GameScreen::GameScreen(int foodNum) : foodManager(foodNum), snakeManager()
+GameScreen::GameScreen(int foodNum) : foodManager(foodNum), snakeManager(), rectangle()
 {
+    rectangle.setSize(sf::Vector2f(buttomRight.x, buttomRight.y));
+    rectangle.setPosition(0, 0);
 }
 
 void GameScreen::run(sf::RenderWindow &window)
@@ -48,6 +50,7 @@ void GameScreen::render(sf::RenderWindow &window)
     sf::Clock test_clock;
     sf::Time logTime;
     window.clear(sf::Color::Black);
+    window.draw(rectangle);
     snakeManager.followHumanPlayer(window);
     test_clock.restart();
 
@@ -71,7 +74,9 @@ SCREEN GameScreen::nextScreenLogic(sf::RenderWindow &window)
         {
             ;
         }
-
+        sf::View view = window.getView();
+        view.setCenter(400, 300);
+        window.setView(view);
         return SCREEN::PAUSE;
     }
     return SCREEN::GAME;

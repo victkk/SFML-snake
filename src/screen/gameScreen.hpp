@@ -18,6 +18,7 @@ class GameScreen : public IScreen
 private:
     SnakeManager snakeManager;
     FoodManager foodManager;
+    sf::RectangleShape rectangle;
 
 public:
     GameScreen(int foodNum);

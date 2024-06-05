@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 19:27:34
+ * @LastEditTime: 2024-06-05 20:36:25
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -71,6 +71,13 @@ void SnakeManager::deathJudge()
     for (auto itSubject = snakes.begin(); itSubject != snakes.end();)
     {
         bool subjectKilled = false;
+        if (itSubject->getHead().x < topLeft.x || itSubject->getHead().x > buttomRight.x || itSubject->getHead().y < topLeft.y || itSubject->getHead().y > buttomRight.y)
+        {
+            itSubject = snakes.erase(itSubject);
+            subjectKilled = true;
+            std::cout << "KILLED!";
+            break;
+        }
         for (auto itKiller = snakes.begin(); itKiller != snakes.end(); ++itKiller)
         {
             if (itKiller != itSubject)
