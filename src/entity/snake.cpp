@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-02 10:32:44
+ * @LastEditTime: 2024-06-05 14:21:58
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -38,7 +38,7 @@ void Snake::render(sf::RenderWindow &window)
     }
 }
 
-void Snake::setDirection(sf::RenderWindow &window)
+void Snake::setDirection(sf::RenderWindow &window, std::vector<Snake> &snakes)
 {
     if (humanPlayer)
     {
@@ -46,7 +46,7 @@ void Snake::setDirection(sf::RenderWindow &window)
     }
     else
     {
-        autoDrive();
+        autoDrive(snakes, 0, 800, 0, 600);
     }
 }
 void Snake::handleInput(sf::RenderWindow &window)
@@ -74,26 +74,53 @@ void Snake::handleInput(sf::RenderWindow &window)
     }
     std::cout << speed;
 }
-void Snake::autoDrive()
+void Snake::autoDrive(std::vector<Snake> &snakes, int xMin, int xMax, int yMin, int yMax)
 {
-    static int cnt = 0;
-    cnt++;
-    if (cnt % 400 == 100)
+    bool changed = false;
+    sf::Vector2f closestPoint;
+    float dist = 50;
+    if (xMax - snakeBody.at(snakeBody.size() - 1).x < dist)
     {
-        direction = sf::Vector2f(-1, 0);
+        closestPoint = sf::Vector2f(xMax, snakeBody.at(snakeBody.size() - 1).y);
+        dist = xMax - snakeBody.at(snakeBody.size() - 1).x;
+        changed = true;
     }
-    if (cnt % 400 == 200)
+    if (-xMin + snakeBody.at(snakeBody.size() - 1).x < dist)
     {
-        direction = sf::Vector2f(0, 1);
+        closestPoint = sf::Vector2f(xMin, snakeBody.at(snakeBody.size() - 1).y);
+        dist = -xMin + snakeBody.at(snakeBody.size() - 1).x;
+        changed = true;
     }
-    if (cnt % 400 == 300)
+    if (yMax - snakeBody.at(snakeBody.size() - 1).y < dist)
     {
-        direction = sf::Vector2f(1, 0);
+        closestPoint = sf::Vector2f(snakeBody.at(snakeBody.size() - 1).x, yMax);
+        dist = yMax - snakeBody.at(snakeBody.size() - 1).y;
+        changed = true;
     }
-    if (cnt % 400 == 0)
+    if (-yMin + snakeBody.at(snakeBody.size() - 1).y < dist)
     {
-        direction = sf::Vector2f(0, -1);
-        cnt = 0;
+        closestPoint = sf::Vector2f(snakeBody.at(snakeBody.size() - 1).x, yMin);
+        dist = -yMin + snakeBody.at(snakeBody.size() - 1).y;
+        changed = true;
+    }
+    for (auto itSnake = snakes.begin(); itSnake != snakes.end(); itSnake++)
+    {
+        if (&*itSnake != this)
+        {
+            for (const auto &node : itSnake->snakeBody)
+                if (V2fDist(node, snakeBody.at(snakeBody.size() - 1)) < dist)
+                {
+                    closestPoint = node;
+                    dist = V2fDist(node, snakeBody.at(snakeBody.size() - 1));
+                    changed = true;
+                }
+        }
+    }
+    if (changed)
+    {
+        sf::Vector2f headPos = snakeBody.at(snakeBody.size() - 1);
+        sf::Vector2f relativePos = sf::Vector2f(-closestPoint.x + headPos.x, -closestPoint.y + headPos.y);
+        direction = turnWithBound(direction, relativePos, speed * maxAngularVelocity * timePerFrame.asSeconds());
     }
 }
 void Snake::update()

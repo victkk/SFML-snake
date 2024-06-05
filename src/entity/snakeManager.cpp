@@ -2,8 +2,8 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-05-30 15:02:45
- * @FilePath: \tetris-online\src\entity\snakeManager.cpp
+ * @LastEditTime: 2024-06-05 14:16:27
+ * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
@@ -36,7 +36,7 @@ void SnakeManager::handleInput(sf::RenderWindow &window)
 {
     for (auto &snake : snakes)
     {
-        snake.setDirection(window);
+        snake.setDirection(window, snakes);
     }
 }
 

@@ -24,13 +24,13 @@ public:
     void update();
     void render(sf::RenderWindow &window);
     void grow(int size);
-    void setDirection(sf::RenderWindow &window);
+    void setDirection(sf::RenderWindow &window, std::vector<Snake> &snakes);
     bool collision(sf::Vector2f point, float r);
     const sf::Vector2f &getHead();
     int getNodeNum();
 
 private:
-    void autoDrive();
+    void autoDrive(std::vector<Snake> &snakes, int xMin, int xMax, int yMin, int yMax);
     void move();
     void Sprint();
     void handleInput(sf::RenderWindow &window);
