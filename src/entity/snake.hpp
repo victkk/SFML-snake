@@ -24,16 +24,21 @@ public:
     void update();
     void render(sf::RenderWindow &window);
     void grow(int size);
-    void setDirection(sf::RenderWindow &window, std::vector<Snake> &snakes);
+    void setDirection(sf::Vector2f direction);
     bool collision(sf::Vector2f point, float r);
     const sf::Vector2f &getHead();
     int getNodeNum();
+    bool isHumanPlayer();
+    void setSpeed(bool isHighSpeed);
+    int getSpeed();
+    int getMaxAngularVelocity();
+    sf::Vector2f getDirection();
+    std::deque<sf::Vector2f> const &getSnakeBody();
 
 private:
     void autoDrive(std::vector<Snake> &snakes, int xMin, int xMax, int yMin, int yMax);
     void move();
     void Sprint();
-    void handleInput(sf::RenderWindow &window);
     void scaleUp();
 };
 

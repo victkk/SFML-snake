@@ -70,9 +70,9 @@ float V2fDist(const sf::Vector2f &a, const sf::Vector2f &b)
 {
     return std::sqrt(square(a.x - b.x) + square(a.y - b.y));
 }
-sf::Vector2f turnWithBound(sf::Vector2f &current, sf::Vector2f &target, float angleBound)
+sf::Vector2f turnWithBound(const sf::Vector2f &current, const sf::Vector2f &target, float angleBound)
 {
-    float angle = calculateAngleDifference(target,current);
+    float angle = calculateAngleDifference(target, current);
     if (abs(angle) > angleBound)
     {
         return rotateVector(current, angleBound * (angle > 0 ? 1 : -1));

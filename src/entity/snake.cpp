@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 14:21:58
+ * @LastEditTime: 2024-06-05 14:39:21
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -38,42 +38,11 @@ void Snake::render(sf::RenderWindow &window)
     }
 }
 
-void Snake::setDirection(sf::RenderWindow &window, std::vector<Snake> &snakes)
+void Snake::setDirection(sf::Vector2f direction)
 {
-    if (humanPlayer)
-    {
-        handleInput(window);
-    }
-    else
-    {
-        autoDrive(snakes, 0, 800, 0, 600);
-    }
+    this->direction = direction;
 }
-void Snake::handleInput(sf::RenderWindow &window)
-{
-    sf::Event event;
-    // Sprint();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        speed = 2;
-    else
-        speed = 1;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        direction = sf::Vector2f(-1, 0);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        direction = sf::Vector2f(0, -1);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        direction = sf::Vector2f(0, 1);
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        direction = sf::Vector2f(1, 0);
-    else if (sf::Event::GainedFocus && sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        sf::Vector2f headPos = snakeBody.at(snakeBody.size() - 1);
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        sf::Vector2f relativePos = sf::Vector2f(mousePos.x - headPos.x, mousePos.y - headPos.y);
-        direction = turnWithBound(direction, relativePos, speed * maxAngularVelocity * timePerFrame.asSeconds());
-    }
-    std::cout << speed;
-}
+
 void Snake::autoDrive(std::vector<Snake> &snakes, int xMin, int xMax, int yMin, int yMax)
 {
     bool changed = false;
@@ -178,4 +147,40 @@ void Snake::scaleUp()
 int Snake::getNodeNum()
 {
     return snakeBody.size();
+}
+bool Snake::isHumanPlayer()
+{
+    return humanPlayer;
+}
+
+void Snake::setSpeed(bool isHighSpeed)
+{
+    if (isHighSpeed)
+    {
+        speed = 2;
+    }
+    else
+    {
+        speed = 1;
+    }
+}
+
+int Snake::getSpeed()
+{
+    return speed;
+}
+
+int Snake::getMaxAngularVelocity()
+{
+    return maxAngularVelocity;
+}
+
+sf::Vector2f Snake::getDirection()
+{
+    return direction;
+}
+
+std::deque<sf::Vector2f> const &Snake::getSnakeBody()
+{
+    return snakeBody;
 }
