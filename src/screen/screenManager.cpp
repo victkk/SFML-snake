@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 20:16:27
+ * @LastEditTime: 2024-06-11 15:02:56
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -10,9 +10,9 @@
  */
 
 #include "screenManager.hpp"
-ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), window(sf::VideoMode(800, 600), "SFML")
+ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), startScreen(), window(sf::VideoMode(800, 600), "SFML")
 {
-    currentScreen = &gameScreen;
+    currentScreen = &startScreen;
 }
 void ScreenManager::run()
 {
@@ -69,6 +69,16 @@ void ScreenManager::nextScreenLogic()
     case SCREEN::GAME:
         currentScreen = &gameScreen;
         break;
+    case SCREEN::START:
+        std::cout << "start";    
+        if (currentScreen != &startScreen)
+        {
+            gameScreen.restart();
+            std::cout << "gameScreen.restart()";
+        }
+        currentScreen = &startScreen;
+        break;
+
     default:
         break;
     }

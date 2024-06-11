@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 08:35:32
+ * @LastEditTime: 2024-06-11 14:59:21
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -72,6 +72,7 @@ void Snake::update()
 {
     move();
     scaleUp();
+    Sprint();
 }
 void Snake::move()
 {
@@ -108,10 +109,10 @@ const sf::Vector2f &Snake::getHead()
 // helper func for debugging
 void Snake::Sprint()
 {
-    for (const auto &a : snakeBody)
-    {
-        std::cout << "(" << a.x << "," << a.y << ")";
-    }
+    // for (const auto &a : snakeBody)
+    // {
+    std::cout << "(" << snakeBody[0].x << "," << snakeBody[0].y << ")";
+    // }
     std::cout << std::endl;
 }
 void Snake::scaleUp()
@@ -167,9 +168,11 @@ float Snake::getRadius()
 }
 void Snake::respawn()
 {
+
     texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
     direction = sf::Vector2f(sf::Vector2f(std::rand() % 100 - 50, std::rand() % 100 - 50));
-    snakeBody = {};
+
+    snakeBody.clear();
     initial_x = std::rand() % (buttomRight.x - 200) + 100;
     initial_y = std::rand() % (buttomRight.y - 200) + 100;
 

@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 08:56:35
+ * @LastEditTime: 2024-06-11 15:08:16
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -190,7 +190,7 @@ void SnakeManager::autoDrive(int xMin, int xMax, int yMin, int yMax)
 void SnakeManager::followHumanPlayer(sf::RenderWindow &window)
 {
     sf::View view = window.getView();
-    for (auto snake : snakes)
+    for (auto &snake : snakes)
     {
         if (snake.isHumanPlayer())
         {
@@ -208,7 +208,7 @@ bool SnakeManager::isHumanPlayerAlive()
 
 void SnakeManager::randomInitialize()
 {
-    for (auto snake : snakes)
+    for (auto& snake : snakes)
     {
         snake.respawn();
     }

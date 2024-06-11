@@ -5,6 +5,7 @@ class PauseScreen : public IScreen
 {
 private:
     Button resumeButton;
+    Button startMenuButton;
 
 public:
     PauseScreen();

@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 20:42:12
+ * @LastEditTime: 2024-06-11 11:21:20
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
@@ -80,4 +80,9 @@ SCREEN GameScreen::nextScreenLogic(sf::RenderWindow &window)
         return SCREEN::PAUSE;
     }
     return SCREEN::GAME;
+}
+
+void GameScreen::restart()
+{
+    snakeManager.randomInitialize();
 }

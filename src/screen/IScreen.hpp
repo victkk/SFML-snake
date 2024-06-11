@@ -3,7 +3,8 @@
 enum class SCREEN
 {
     GAME,
-    PAUSE
+    PAUSE,
+    START
 };
 
 class IScreen

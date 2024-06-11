@@ -27,6 +27,7 @@ public:
     void render(sf::RenderWindow &window) override;
     void run(sf::RenderWindow &window) override;
     SCREEN nextScreenLogic(sf::RenderWindow &window) override;
+    void restart();
 };
 
 extern sf::Vector2i topLeft;
