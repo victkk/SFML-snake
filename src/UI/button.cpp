@@ -11,7 +11,7 @@
 #include "button.hpp"
 Button::Button(const std::string &buttonText)
 {
-    if (!font.loadFromFile("../../resources/font/SourceHanSansSC-Bold.otf"))
+    if (!font.loadFromFile("../../resources/font/retro-pixel-font/arcade/retro-pixel-arcade.otf"))
     {
         std::cout << "fuck! where is the font?(calling from button.cpp)";
     }

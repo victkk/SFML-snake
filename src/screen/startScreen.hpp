@@ -5,6 +5,9 @@ class StartScreen : public IScreen
 {
 private:
     Button startButton;
+    sf::Text text1;
+    sf::Text text2;
+    sf::Font font;
 
 public:
     StartScreen();

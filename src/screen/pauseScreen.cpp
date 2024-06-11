@@ -10,7 +10,7 @@
  */
 
 #include "pauseScreen.hpp"
-PauseScreen::PauseScreen() : resumeButton("resume"), startMenuButton("end game")
+PauseScreen::PauseScreen() : resumeButton("RESUME"), startMenuButton("ENDGAME")
 {
     resumeButton.setPosition(sf::Vector2f(150, 300));
     startMenuButton.setPosition(sf::Vector2f(450, 300));

@@ -1,8 +1,8 @@
 #include "deathScreen.hpp"
-DeathScreen::DeathScreen() : startMenuButton("MainMenu"), restartButton("restart")
+DeathScreen::DeathScreen() : startMenuButton("MAINMENU"), restartButton("RESTART")
 {
-    startMenuButton.setPosition(sf::Vector2f(200, 500));
-    restartButton.setPosition(sf::Vector2f(400, 500));
+    startMenuButton.setPosition(sf::Vector2f(180, 500));
+    restartButton.setPosition(sf::Vector2f(420, 500));
     texture.loadFromFile("../../resources/img/noob.png");
     sNoob.setTexture(texture);
 }
