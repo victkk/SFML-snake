@@ -20,9 +20,13 @@ class FoodManager
 private:
     std::vector<Food> foods;
     sf::VertexArray quadsArray;
-public:
     FoodManager(int foodNum);
-    void update(std::vector<Snake> &snakes);
 
+public:
+    static FoodManager &getInstance();
+    void update(std::vector<Snake> &snakes);
     void render(sf::RenderWindow &window);
+
+    FoodManager(FoodManager const &) = delete; // make sure no copies of SnakeManager may exist
+    void operator=(FoodManager const &) = delete;
 };

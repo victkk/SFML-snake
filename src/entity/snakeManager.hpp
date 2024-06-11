@@ -18,9 +18,10 @@ private:
     bool humanPlayerAlive;
     void autoDrive(int xMin, int xMax, int yMin, int yMax);
     void deathJudge();
+    SnakeManager();
 
 public:
-    SnakeManager();
+    static SnakeManager &getInstance();
     void handleInput(sf::RenderWindow &window);
     void followHumanPlayer(sf::RenderWindow &window);
     void render(sf::RenderWindow &window);
@@ -28,5 +29,8 @@ public:
     std::vector<Snake> &getSnakes();
     bool isHumanPlayerAlive();
     void randomInitialize();
+
+    SnakeManager(SnakeManager const &) = delete; // make sure no copies of SnakeManager may exist
+    void operator=(SnakeManager const &) = delete;
 };
 extern sf::Vector2i topLeft, buttomRight;

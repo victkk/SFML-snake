@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 17:10:44
+ * @LastEditTime: 2024-06-11 21:17:18
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
@@ -12,7 +12,7 @@
 sf::Vector2i topLeft(0, 0);
 sf::Vector2i buttomRight(2400, 1800); // size of the map
 
-GameScreen::GameScreen(int foodNum) : foodManager(foodNum), snakeManager(), rectangle()
+GameScreen::GameScreen(int foodNum) : foodManager(FoodManager::getInstance()), snakeManager(SnakeManager::getInstance()), rectangle()
 {
     rectangle.setSize(sf::Vector2f(buttomRight.x, buttomRight.y));
     rectangle.setPosition(0, 0);

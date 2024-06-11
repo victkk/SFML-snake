@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 19:03:54
+ * @LastEditTime: 2024-06-11 21:18:07
  * @FilePath: \SFML-snake\src\screen\gameScreen.hpp
  * @Description:
  *
@@ -16,8 +16,8 @@
 class GameScreen : public IScreen
 {
 private:
-    SnakeManager snakeManager;
-    FoodManager foodManager;
+    SnakeManager& snakeManager;
+    FoodManager& foodManager;
     sf::RectangleShape rectangle;
 
 public:

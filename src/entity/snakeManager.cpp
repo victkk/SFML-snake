@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 17:07:58
+ * @LastEditTime: 2024-06-11 21:01:55
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -210,4 +210,10 @@ void SnakeManager::randomInitialize()
         snake.respawn();
     }
     humanPlayerAlive = true;
+}
+
+SnakeManager &SnakeManager::getInstance()
+{
+    static SnakeManager mSnakeManager;
+    return mSnakeManager;
 }

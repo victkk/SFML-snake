@@ -42,3 +42,8 @@ void FoodManager::update(std::vector<Snake> &snakes)
             food_ptr++;
     }
 }
+
+FoodManager &FoodManager::getInstance()
+{
+    static FoodManager mFoodManager(400);
+}
