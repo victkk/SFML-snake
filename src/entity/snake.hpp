@@ -20,7 +20,7 @@ private:
 
 public:
     Snake(bool humanPlayer, int initial_x, int initial_y);
-
+    Snake(bool humanPlayer);
     void update();
     void render(sf::RenderWindow &window);
     void grow(int size);
@@ -35,6 +35,7 @@ public:
     sf::Vector2f getDirection();
     std::deque<sf::Vector2f> const &getSnakeBody();
     float getRadius();
+    void respawn();
 
 private:
     void move();
@@ -43,3 +44,4 @@ private:
 };
 
 extern sf::Time timePerFrame;
+extern sf::Vector2i topLeft, buttomRight;

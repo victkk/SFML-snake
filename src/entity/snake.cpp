@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 20:41:23
+ * @LastEditTime: 2024-06-11 08:35:32
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -14,17 +14,37 @@ Snake::Snake(bool humanPlayer, int initial_x, int initial_y) : humanPlayer{human
 {
     kNodeDist = 1.5;
     bodyNodeNum = 10;
-    speed = 1;
+    speed = 2;
     maxAngularVelocity = 300;
-    direction = sf::Vector2f(1, 1);
+    direction = sf::Vector2f(std::rand() % 100 - 50, std::rand() % 100 - 50);
 
     texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
-
+    initial_x = std::rand() % (buttomRight.x - 200) + 100;
+    initial_y = std::rand() % (buttomRight.y - 200) + 100;
     for (int i = 0; i < 200; i++)
     {
         snakeBody.emplace_back(initial_x, initial_y);
     }
 }
+
+Snake::Snake(bool humanPlayer) : humanPlayer{humanPlayer}
+{
+
+    kNodeDist = 1.5;
+    bodyNodeNum = 10;
+    speed = 2;
+    maxAngularVelocity = 300;
+    direction = sf::Vector2f(sf::Vector2f(std::rand() % 100 - 50, std::rand() % 100 - 50));
+
+    texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
+    initial_x = std::rand() % (buttomRight.x - 200) + 100;
+    initial_y = std::rand() % (buttomRight.y - 200) + 100;
+    for (int i = 0; i < 200; i++)
+    {
+        snakeBody.emplace_back(initial_x, initial_y);
+    }
+}
+
 void Snake::render(sf::RenderWindow &window)
 {
     int cnt = 1;
@@ -97,7 +117,7 @@ void Snake::Sprint()
 void Snake::scaleUp()
 {
     int len = getNodeNum();
-    bodyNodeNum = 10 + len / 100;
+    bodyNodeNum = 10 + std::log(len) / 3;
 }
 
 int Snake::getNodeNum()
@@ -113,11 +133,11 @@ void Snake::setSpeed(bool isHighSpeed)
 {
     if (isHighSpeed)
     {
-        speed = 2;
+        speed = 4;
     }
     else
     {
-        speed = 1;
+        speed = 2;
     }
 }
 
@@ -144,4 +164,17 @@ std::deque<sf::Vector2f> const &Snake::getSnakeBody()
 float Snake::getRadius()
 {
     return kNodeDist * bodyNodeNum * 0.7;
+}
+void Snake::respawn()
+{
+    texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
+    direction = sf::Vector2f(sf::Vector2f(std::rand() % 100 - 50, std::rand() % 100 - 50));
+    snakeBody = {};
+    initial_x = std::rand() % (buttomRight.x - 200) + 100;
+    initial_y = std::rand() % (buttomRight.y - 200) + 100;
+
+    for (int i = 0; i < 200; i++)
+    {
+        snakeBody.emplace_back(initial_x, initial_y);
+    }
 }

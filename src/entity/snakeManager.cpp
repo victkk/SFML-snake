@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 20:36:25
+ * @LastEditTime: 2024-06-11 08:56:35
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -13,8 +13,10 @@
 #include "snake.hpp"
 SnakeManager::SnakeManager()
 {
-    snakes.emplace_back(true, 100, 100);  // A snake controlled by humanplayer
-    snakes.emplace_back(false, 300, 300); // An auto snake
+    snakes.emplace_back(true);  // A snake controlled by humanplayer
+    snakes.emplace_back(false); // An auto snake
+    snakes.emplace_back(false);
+    snakes.emplace_back(false);
 }
 void SnakeManager::update()
 {
@@ -24,6 +26,10 @@ void SnakeManager::update()
     }
     autoDrive(topLeft.x, buttomRight.x, topLeft.y, buttomRight.y);
     deathJudge();
+    if (!isHumanPlayerAlive())
+    {
+        ;
+    }
 }
 
 void SnakeManager::render(sf::RenderWindow &window)
@@ -73,9 +79,14 @@ void SnakeManager::deathJudge()
         bool subjectKilled = false;
         if (itSubject->getHead().x < topLeft.x || itSubject->getHead().x > buttomRight.x || itSubject->getHead().y < topLeft.y || itSubject->getHead().y > buttomRight.y)
         {
-            itSubject = snakes.erase(itSubject);
+            // itSubject = snakes.erase(itSubject);
             subjectKilled = true;
             std::cout << "KILLED!";
+            if (itSubject->isHumanPlayer())
+            {
+                humanPlayerAlive = false;
+            }
+            itSubject->respawn();
             break;
         }
         for (auto itKiller = snakes.begin(); itKiller != snakes.end(); ++itKiller)
@@ -84,17 +95,22 @@ void SnakeManager::deathJudge()
             {
                 if (itKiller->collision(itSubject->getHead(), 10))
                 {
-                    itSubject = snakes.erase(itSubject);
+                    if (itSubject->isHumanPlayer())
+                    {
+                        humanPlayerAlive = false;
+                    }
+                    itSubject->respawn();
+                    // itSubject = snakes.erase(itSubject);
                     subjectKilled = true;
                     std::cout << "KILLED!";
                     break;
                 }
             }
         }
-        if (!subjectKilled)
-        {
-            ++itSubject;
-        }
+        // if (!subjectKilled)
+        // {
+        ++itSubject;
+        // }
     }
 }
 std::vector<Snake> &SnakeManager::getSnakes()
@@ -183,4 +199,17 @@ void SnakeManager::followHumanPlayer(sf::RenderWindow &window)
     }
     window.setView(view);
     return;
+}
+
+bool SnakeManager::isHumanPlayerAlive()
+{
+    return humanPlayerAlive;
+}
+
+void SnakeManager::randomInitialize()
+{
+    for (auto snake : snakes)
+    {
+        snake.respawn();
+    }
 }

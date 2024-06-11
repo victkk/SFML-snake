@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:52:00
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 14:47:46
+ * @LastEditTime: 2024-06-11 08:46:20
  * @FilePath: \SFML-snake\src\entity\snakeManager.hpp
  * @Description:
  *
@@ -15,6 +15,7 @@ class SnakeManager
 {
 private:
     std::vector<Snake> snakes;
+    bool humanPlayerAlive;
     void autoDrive(int xMin, int xMax, int yMin, int yMax);
     void deathJudge();
 
@@ -25,5 +26,7 @@ public:
     void render(sf::RenderWindow &window);
     void update();
     std::vector<Snake> &getSnakes();
+    bool isHumanPlayerAlive();
+    void randomInitialize();
 };
-extern sf::Vector2i topLeft,buttomRight;
+extern sf::Vector2i topLeft, buttomRight;
