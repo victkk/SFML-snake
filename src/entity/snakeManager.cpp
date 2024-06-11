@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 15:08:16
+ * @LastEditTime: 2024-06-11 17:07:58
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -17,6 +17,7 @@ SnakeManager::SnakeManager()
     snakes.emplace_back(false); // An auto snake
     snakes.emplace_back(false);
     snakes.emplace_back(false);
+    humanPlayerAlive = true;
 }
 void SnakeManager::update()
 {
@@ -26,10 +27,6 @@ void SnakeManager::update()
     }
     autoDrive(topLeft.x, buttomRight.x, topLeft.y, buttomRight.y);
     deathJudge();
-    if (!isHumanPlayerAlive())
-    {
-        ;
-    }
 }
 
 void SnakeManager::render(sf::RenderWindow &window)
@@ -208,8 +205,9 @@ bool SnakeManager::isHumanPlayerAlive()
 
 void SnakeManager::randomInitialize()
 {
-    for (auto& snake : snakes)
+    for (auto &snake : snakes)
     {
         snake.respawn();
     }
+    humanPlayerAlive = true;
 }

@@ -4,7 +4,8 @@ enum class SCREEN
 {
     GAME,
     PAUSE,
-    START
+    START,
+    DEATH
 };
 
 class IScreen

@@ -12,6 +12,7 @@
 #include "gameScreen.hpp"
 #include "pauseScreen.hpp"
 #include "startScreen.hpp"
+#include "deathScreen.hpp"
 class ScreenManager
 {
 private:
@@ -20,6 +21,7 @@ private:
     PauseScreen pauseScreen;
     GameScreen gameScreen;
     StartScreen startScreen;
+    DeathScreen deathScreen;
 
 public:
     ScreenManager();

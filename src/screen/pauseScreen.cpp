@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-31 14:18:31
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 09:32:49
+ * @LastEditTime: 2024-06-11 17:18:24
  * @FilePath: \SFML-snake\src\screen\pauseScreen.cpp
  * @Description:
  *
@@ -12,8 +12,8 @@
 #include "pauseScreen.hpp"
 PauseScreen::PauseScreen() : resumeButton("resume"), startMenuButton("end game")
 {
-    resumeButton.setPosition(sf::Vector2f(300, 200));
-    startMenuButton.setPosition(sf::Vector2f(300, 500));
+    resumeButton.setPosition(sf::Vector2f(150, 300));
+    startMenuButton.setPosition(sf::Vector2f(450, 300));
 }
 void PauseScreen::run(sf::RenderWindow &window)
 {
@@ -35,13 +35,14 @@ void PauseScreen::update()
 
 void PauseScreen::render(sf::RenderWindow &window)
 {
-    window.clear(sf::Color::White);
+    window.clear(sf::Color::Black);
     window.draw(resumeButton);
     window.draw(startMenuButton);
     window.display();
 }
 SCREEN PauseScreen::nextScreenLogic(sf::RenderWindow &window)
 {
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
         while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

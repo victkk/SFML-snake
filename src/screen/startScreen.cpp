@@ -2,16 +2,16 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-05 20:49:13
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 09:28:04
+ * @LastEditTime: 2024-06-11 17:19:02
  * @FilePath: \SFML-snake\src\screen\startScreen.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
  */
 #include "startScreen.hpp"
-StartScreen::StartScreen() : startButton("resume")
+StartScreen::StartScreen() : startButton("start")
 {
-    startButton.setPosition(sf::Vector2f(300, 200));
+    startButton.setPosition(sf::Vector2f(300, 350));
 }
 void StartScreen::run(sf::RenderWindow &window)
 {
@@ -32,7 +32,7 @@ void StartScreen::update()
 
 void StartScreen::render(sf::RenderWindow &window)
 {
-    window.clear(sf::Color::White);
+    window.clear(sf::Color::Black);
     window.draw(startButton);
     window.display();
 }

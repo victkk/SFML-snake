@@ -1,0 +1,6 @@
+Retro Pixel Petty 5H
+
+font-size: 5px
+line-height: 9px
+
+Draw uppercase letters with minimum size by 5px height. Correspondingly, there are only uppercase letters and basic punctuation.

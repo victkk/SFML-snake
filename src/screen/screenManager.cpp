@@ -10,7 +10,7 @@
  */
 
 #include "screenManager.hpp"
-ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), startScreen(), window(sf::VideoMode(800, 600), "SFML")
+ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), startScreen(), deathScreen(), window(sf::VideoMode(800, 600), "SFML")
 {
     currentScreen = &startScreen;
 }
@@ -61,6 +61,7 @@ void ScreenManager::run()
 
 void ScreenManager::nextScreenLogic()
 {
+    // 遭，一不小心又写成屎山状态机了，寄
     switch (currentScreen->nextScreenLogic(window))
     {
     case SCREEN::PAUSE:
@@ -70,15 +71,17 @@ void ScreenManager::nextScreenLogic()
         currentScreen = &gameScreen;
         break;
     case SCREEN::START:
-        std::cout << "start";    
         if (currentScreen != &startScreen)
         {
             gameScreen.restart();
-            std::cout << "gameScreen.restart()";
         }
         currentScreen = &startScreen;
         break;
 
+    case SCREEN::DEATH:
+        gameScreen.restart();
+        currentScreen = &deathScreen;
+        break;
     default:
         break;
     }

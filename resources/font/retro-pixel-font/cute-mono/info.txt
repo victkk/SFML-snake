@@ -1,0 +1,6 @@
+Retro Pixel Cute Mono
+
+font-size: 11px
+line-height: 15px
+
+The design is based on the lowercase letters with 5px height, monospaced mode.

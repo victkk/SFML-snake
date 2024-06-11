@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 11:21:20
+ * @LastEditTime: 2024-06-11 17:10:44
  * @FilePath: \SFML-snake\src\screen\gameScreen.cpp
  * @Description:
  *
@@ -78,6 +78,13 @@ SCREEN GameScreen::nextScreenLogic(sf::RenderWindow &window)
         view.setCenter(400, 300);
         window.setView(view);
         return SCREEN::PAUSE;
+    }
+    if (!snakeManager.isHumanPlayerAlive())
+    {
+        sf::View view = window.getView();
+        view.setCenter(400, 300);
+        window.setView(view);
+        return SCREEN::DEATH;
     }
     return SCREEN::GAME;
 }

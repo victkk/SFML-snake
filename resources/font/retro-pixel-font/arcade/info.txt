@@ -1,0 +1,6 @@
+Retro Pixel Arcade
+
+font-size: 8px
+line-height: 12px
+
+Arcade Cabinet style pixel font. Design from Atari and Famicom game font.

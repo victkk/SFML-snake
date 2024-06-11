@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 14:59:21
+ * @LastEditTime: 2024-06-11 15:49:41
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -39,7 +39,7 @@ Snake::Snake(bool humanPlayer) : humanPlayer{humanPlayer}
     texture = createGradientTexture(20, 20, colorMap[std::rand() % 5], colorMap[std::rand() % 5]);
     initial_x = std::rand() % (buttomRight.x - 200) + 100;
     initial_y = std::rand() % (buttomRight.y - 200) + 100;
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 50; i++)
     {
         snakeBody.emplace_back(initial_x, initial_y);
     }
@@ -176,7 +176,7 @@ void Snake::respawn()
     initial_x = std::rand() % (buttomRight.x - 200) + 100;
     initial_y = std::rand() % (buttomRight.y - 200) + 100;
 
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 50; i++)
     {
         snakeBody.emplace_back(initial_x, initial_y);
     }

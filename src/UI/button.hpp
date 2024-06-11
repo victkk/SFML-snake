@@ -6,7 +6,9 @@ class Button : public sf::Drawable
 {
 private:
     sf::RectangleShape shape;
+    sf::RectangleShape frame;
     sf::Text text;
+    sf::Font font;
     bool isHovered;
     bool isClicked;
 

@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:42
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 20:44:23
+ * @LastEditTime: 2024-06-11 17:24:33
  * @FilePath: \SFML-snake\src\entity\food.cpp
  * @Description:
  *
@@ -14,7 +14,7 @@ Food::Food(sf::Vertex *vertex) : vertex(vertex)
 {
     score = std::rand() % 5;
     pos = sf::Vector2f(std::rand() % buttomRight.x, std::rand() % buttomRight.y);
-    velocity = 500; // pixel per second
+    velocity = 700; // pixel per second
     radius = 2;
     vertex[0].color = colorMap[score];
     vertex[1].color = colorMap[score];
