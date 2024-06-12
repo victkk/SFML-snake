@@ -10,7 +10,7 @@
  */
 
 #include "pauseScreen.hpp"
-PauseScreen::PauseScreen() : resumeButton("RESUME"), startMenuButton("ENDGAME")
+PauseScreen::PauseScreen() : resumeButton("RESUME"), startMenuButton("ENDGAME"), ScreenEnum(SCREEN::PAUSE)
 {
     resumeButton.setPosition(sf::Vector2f(150, 300));
     startMenuButton.setPosition(sf::Vector2f(450, 300));
@@ -62,7 +62,13 @@ SCREEN PauseScreen::nextScreenLogic(sf::RenderWindow &window)
     return SCREEN::PAUSE;
 }
 
-PauseScreen& PauseScreen::getInstance(){
+PauseScreen &PauseScreen::getInstance()
+{
     static PauseScreen mPauseScreen;
     return mPauseScreen;
+}
+
+SCREEN PauseScreen::getScreenEnum()
+{
+    return ScreenEnum;
 }

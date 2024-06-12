@@ -2,14 +2,14 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-11 15:50:46
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-12 13:55:57
+ * @LastEditTime: 2024-06-12 14:20:36
  * @FilePath: \SFML-snake\src\screen\deathScreen.cpp
  * @Description:
  *
  * Copyright (c) 2024 by vic123, All Rights Reserved.
  */
 #include "deathScreen.hpp"
-DeathScreen::DeathScreen() : startMenuButton("MAINMENU"), restartButton("RESTART")
+DeathScreen::DeathScreen() : startMenuButton("MAINMENU"), restartButton("RESTART"),ScreenEnum(SCREEN::DEATH)
 {
     startMenuButton.setPosition(sf::Vector2f(180, 500));
     restartButton.setPosition(sf::Vector2f(420, 500));
@@ -72,4 +72,9 @@ DeathScreen &DeathScreen::getInstance()
 {
     static DeathScreen mDeathScreen;
     return mDeathScreen;
+}
+
+
+SCREEN DeathScreen::getScreenEnum(){
+    return ScreenEnum;
 }

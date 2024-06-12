@@ -12,7 +12,7 @@
 sf::Vector2i topLeft(0, 0);
 sf::Vector2i buttomRight(2400, 1800); // size of the map
 
-GameScreen::GameScreen() : foodManager(FoodManager::getInstance()), snakeManager(SnakeManager::getInstance()), rectangle()
+GameScreen::GameScreen() : foodManager(FoodManager::getInstance()), snakeManager(SnakeManager::getInstance()), rectangle(), ScreenEnum(SCREEN::GAME)
 {
     rectangle.setSize(sf::Vector2f(buttomRight.x, buttomRight.y));
     rectangle.setPosition(0, 0);
@@ -98,4 +98,9 @@ GameScreen &GameScreen::getInstance()
 {
     static GameScreen mGameScreen;
     return mGameScreen;
+}
+
+SCREEN GameScreen::getScreenEnum()
+{
+    return ScreenEnum;
 }

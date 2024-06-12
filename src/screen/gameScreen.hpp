@@ -16,6 +16,7 @@
 class GameScreen : public IScreen
 {
 private:
+    SCREEN ScreenEnum;
     SnakeManager &snakeManager;
     FoodManager &foodManager;
     sf::RectangleShape rectangle;
@@ -29,6 +30,7 @@ public:
     void render(sf::RenderWindow &window) override;
     void run(sf::RenderWindow &window) override;
     SCREEN nextScreenLogic(sf::RenderWindow &window) override;
+    SCREEN getScreenEnum() override;
     void restart();
 
     GameScreen(GameScreen const &) = delete; // make sure no copies of SnakeManager may exist

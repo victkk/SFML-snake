@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-12 14:06:59
+ * @LastEditTime: 2024-06-12 14:23:48
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -61,7 +61,7 @@ void ScreenManager::run()
 
 void ScreenManager::nextScreenLogic()
 {
-    // 遭，一不小心又写成屎山状态机了，寄
+    // double states stateMachine：outter nextScreen, inner currentScreen 
     switch (currentScreen->nextScreenLogic(window))
     {
     case SCREEN::PAUSE:
@@ -71,9 +71,14 @@ void ScreenManager::nextScreenLogic()
         currentScreen = &gameScreen;
         break;
     case SCREEN::START:
-        if (currentScreen != &startScreen)
+        switch (currentScreen->getScreenEnum())
         {
+        case SCREEN::START:
+            break;
+
+        default:
             gameScreen.restart();
+            break;
         }
         currentScreen = &startScreen;
         break;

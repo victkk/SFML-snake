@@ -9,7 +9,7 @@
  * Copyright (c) 2024 by vic123, All Rights Reserved.
  */
 #include "startScreen.hpp"
-StartScreen::StartScreen() : startButton("START")
+StartScreen::StartScreen() : startButton("START"), ScreenEnum(SCREEN::START)
 {
     startButton.setPosition(sf::Vector2f(300, 350));
     if (!font.loadFromFile("../../resources/font/retro-pixel-font/arcade/retro-pixel-arcade.otf"))
@@ -72,4 +72,9 @@ StartScreen &StartScreen::getInstance()
 {
     static StartScreen mStartScreen;
     return mStartScreen;
+}
+
+SCREEN StartScreen::getScreenEnum()
+{
+    return ScreenEnum;
 }
