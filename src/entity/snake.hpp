@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
-#include "../utils.hpp"
+#include "../utils/utils.hpp"
 class Snake
 {
 private:

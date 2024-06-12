@@ -12,7 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
-#include "../utils.hpp"
+#include "../utils/utils.hpp"
 #include "snake.hpp"
 class Food
 {
@@ -29,4 +29,4 @@ public:
     int getScore();
     void reborn();
 };
-extern sf::Vector2i buttomRight,topLeft;
+extern sf::Vector2i buttomRight, topLeft;
