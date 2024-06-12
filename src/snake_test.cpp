@@ -15,11 +15,11 @@
 #include "entity/foodManager.hpp"
 #include "screen/screenManager.hpp"
 
-sf::Time timePerFrame = sf::seconds(1.0f /120.0f);
+sf::Time timePerFrame = sf::seconds(1.0f / 120.0f);
 
 int main()
 {
-    ScreenManager screenManager;
+    ScreenManager &screenManager = ScreenManager::getInstance();
     screenManager.run();
     return 0;
 }

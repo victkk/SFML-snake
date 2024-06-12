@@ -16,18 +16,23 @@
 class GameScreen : public IScreen
 {
 private:
-    SnakeManager& snakeManager;
-    FoodManager& foodManager;
+    SnakeManager &snakeManager;
+    FoodManager &foodManager;
     sf::RectangleShape rectangle;
+    GameScreen();
 
 public:
-    GameScreen(int foodNum);
+    static GameScreen &getInstance();
+
     void handleInput(sf::RenderWindow &window) override;
     void update() override;
     void render(sf::RenderWindow &window) override;
     void run(sf::RenderWindow &window) override;
     SCREEN nextScreenLogic(sf::RenderWindow &window) override;
     void restart();
+
+    GameScreen(GameScreen const &) = delete; // make sure no copies of SnakeManager may exist
+    void operator=(GameScreen const &) = delete;
 };
 
 extern sf::Vector2i topLeft;

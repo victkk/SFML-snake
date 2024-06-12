@@ -67,3 +67,9 @@ SCREEN StartScreen::nextScreenLogic(sf::RenderWindow &window)
     }
     return SCREEN::START;
 }
+
+StartScreen &StartScreen::getInstance()
+{
+    static StartScreen mStartScreen;
+    return mStartScreen;
+}

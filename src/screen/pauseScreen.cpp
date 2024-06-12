@@ -61,3 +61,8 @@ SCREEN PauseScreen::nextScreenLogic(sf::RenderWindow &window)
     }
     return SCREEN::PAUSE;
 }
+
+PauseScreen& PauseScreen::getInstance(){
+    static PauseScreen mPauseScreen;
+    return mPauseScreen;
+}

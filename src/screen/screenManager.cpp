@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 15:02:56
+ * @LastEditTime: 2024-06-12 14:06:59
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -10,7 +10,7 @@
  */
 
 #include "screenManager.hpp"
-ScreenManager::ScreenManager() : pauseScreen(), gameScreen(1000), startScreen(), deathScreen(), window(sf::VideoMode(800, 600), "SFML")
+ScreenManager::ScreenManager() : pauseScreen(PauseScreen::getInstance()), gameScreen(GameScreen::getInstance()), startScreen(StartScreen::getInstance()), deathScreen(DeathScreen::getInstance()), window(sf::VideoMode(800, 600), "SFML")
 {
     currentScreen = &startScreen;
 }
@@ -88,4 +88,10 @@ void ScreenManager::nextScreenLogic()
 }
 void ScreenManager::jumpTo(SCREEN screen)
 {
+}
+
+ScreenManager &ScreenManager::getInstance()
+{
+    static ScreenManager mScreenManager;
+    return mScreenManager;
 }

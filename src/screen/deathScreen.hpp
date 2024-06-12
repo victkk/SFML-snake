@@ -8,12 +8,16 @@ private:
     Button restartButton;
     sf::Texture texture;
     sf::Sprite sNoob;
+    DeathScreen();
 
 public:
-    DeathScreen();
+    static DeathScreen &getInstance();
     void handleInput(sf::RenderWindow &window) override;
     void update() override;
     void render(sf::RenderWindow &window) override;
     void run(sf::RenderWindow &window) override;
     SCREEN nextScreenLogic(sf::RenderWindow &window) override;
+
+    DeathScreen(DeathScreen const &) = delete; // make sure no copies of SnakeManager may exist
+    void operator=(DeathScreen const &) = delete;
 };
