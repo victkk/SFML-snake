@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 14:36:51
+ * @LastEditTime: 2024-06-14 16:58:21
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -48,7 +48,15 @@ void ScreenManager::run()
                 case sf::Event::Closed:
                     window.close();
                     break;
-
+                case sf::Event::Resized:
+                {
+                    // update the view to the new size of the window
+                    sf::FloatRect visibleArea(0.f, 0.f, event.size.width, event.size.height);
+                    sf::View view(visibleArea);
+                    view.setCenter(400, 300);
+                    window.setView(view);
+                    break;
+                }
                 default:
                     break;
                 }
@@ -84,7 +92,16 @@ void ScreenManager::nextScreenLogic()
         break;
 
     case SCREEN::DEATH:
-        gameScreen.restart();
+        switch (currentScreen->getScreenEnum())
+        {
+        case SCREEN::DEATH:
+            break;
+
+        default:
+            gameScreen.restart();
+            deathScreen.restart();
+            break;
+        }
         currentScreen = &deathScreen;
         break;
     default:

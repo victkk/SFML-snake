@@ -109,11 +109,11 @@ const sf::Vector2f &Snake::getHead()
 // helper func for debugging
 void Snake::Sprint()
 {
-    // for (const auto &a : snakeBody)
-    // {
-    //std::cout << "(" << snakeBody[0].x << "," << snakeBody[0].y << ")";
-    // }
-    //std::cout << std::endl;
+    for (const auto &a : snakeBody)
+    {
+        std::cout << "(" << snakeBody[0].x << "," << snakeBody[0].y << ")";
+    }
+    std::cout << std::endl;
 }
 void Snake::scaleUp()
 {

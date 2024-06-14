@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:58:19
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 15:46:58
+ * @LastEditTime: 2024-06-14 17:14:21
  * @FilePath: \SFML-snake\src\UI\button.cpp
  * @Description:
  *
@@ -13,7 +13,7 @@ Button::Button(const std::string &buttonText)
 {
     if (!font.loadFromFile("../../resources/font/retro-pixel-font/arcade/retro-pixel-arcade.otf"))
     {
-        // std::cout << "fuck! where is the font?(calling from button.cpp)";
+        std::cout << "fuck! where is the font?(calling from button.cpp)";
     }
     text.setFont(font);
     text.setString(buttonText);
@@ -36,7 +36,8 @@ bool Button::getIsClicked() const
 void Button::update(sf::RenderWindow &window, const sf::Time &dt)
 {
     // 更新按钮状态：检测鼠标悬停状态
-    auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+
+    auto mousePos = static_cast<sf::Vector2f>(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
     isHovered = shape.getGlobalBounds().contains(mousePos);
     if (isHovered)
     {

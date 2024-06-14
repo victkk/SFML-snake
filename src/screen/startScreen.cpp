@@ -14,7 +14,7 @@ StartScreen::StartScreen() : startButton("START"), ScreenEnum(SCREEN::START)
     startButton.setPosition(sf::Vector2f(300, 350));
     if (!font.loadFromFile("../../resources/font/retro-pixel-font/arcade/retro-pixel-arcade.otf"))
     {
-        // std::cout << "fuck! where is the font?(calling from startScreen.cpp)";
+        std::cout << "fuck! where is the font?(calling from startScreen.cpp)";
     }
     text1.setFont(font);
     text1.setString("SFML SNAKE");

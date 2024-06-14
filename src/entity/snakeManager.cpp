@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 11:41:25
+ * @LastEditTime: 2024-06-14 16:17:54
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -72,7 +72,7 @@ void SnakeManager::handleInput(sf::RenderWindow &window)
             {
                 sf::Vector2f headPos = snake.getHead();
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                sf::Vector2f relativePos = sf::Vector2f(mousePos.x - 400, mousePos.y - 300);
+                sf::Vector2f relativePos = window.mapPixelToCoords(mousePos) - snake.getHead();
                 snake.setDirection(turnWithBound(snake.getDirection(), relativePos, snake.getMaxAngularVelocity() * snake.getSpeed() * timePerFrame.asSeconds())); // speed * maxAngularVelocity * timePerFrame.asSeconds()
             }
         }
