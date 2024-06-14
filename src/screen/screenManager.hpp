@@ -13,6 +13,7 @@
 #include "pauseScreen.hpp"
 #include "startScreen.hpp"
 #include "deathScreen.hpp"
+#include "../utils/Constants.hpp"
 class ScreenManager
 {
 private:

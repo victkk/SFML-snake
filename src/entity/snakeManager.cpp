@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 21:01:55
+ * @LastEditTime: 2024-06-14 11:41:25
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -13,20 +13,30 @@
 #include "snake.hpp"
 SnakeManager::SnakeManager()
 {
-    snakes.emplace_back(true);  // A snake controlled by humanplayer
-    snakes.emplace_back(false); // An auto snake
-    snakes.emplace_back(false);
-    snakes.emplace_back(false);
+    snakes.emplace_back(true); // A snake controlled by humanplayer
+    for (int i = 0; i < robotSnakeNum; i++)
+    {
+        snakes.emplace_back(false); // An auto snake
+    }
     humanPlayerAlive = true;
 }
 void SnakeManager::update()
 {
+    sf::Clock test_clock;
+    sf::Time logTime;
+    logTime = test_clock.restart();
     for (auto &snake : snakes)
     {
         snake.update();
     }
+    logTime = test_clock.restart();
+    // std::cout << "\t\t\tSNAKEupdate:" << logTime.asMicroseconds() << std::endl;
     autoDrive(topLeft.x, buttomRight.x, topLeft.y, buttomRight.y);
+    logTime = test_clock.restart();
+    // std::cout << "\t\t\tAutoDrive:" << logTime.asMicroseconds() << std::endl;
     deathJudge();
+    logTime = test_clock.restart();
+    // std::cout << "\t\t\tDeathJudge:" << logTime.asMicroseconds() << std::endl;
 }
 
 void SnakeManager::render(sf::RenderWindow &window)
@@ -78,7 +88,7 @@ void SnakeManager::deathJudge()
         {
             // itSubject = snakes.erase(itSubject);
             subjectKilled = true;
-            std::cout << "KILLED!";
+            // std::cout << "KILLED!";
             if (itSubject->isHumanPlayer())
             {
                 humanPlayerAlive = false;
@@ -99,7 +109,7 @@ void SnakeManager::deathJudge()
                     itSubject->respawn();
                     // itSubject = snakes.erase(itSubject);
                     subjectKilled = true;
-                    std::cout << "KILLED!";
+                    // std::cout << "KILLED!";
                     break;
                 }
             }

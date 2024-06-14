@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-11 21:18:07
+ * @LastEditTime: 2024-06-12 14:46:36
  * @FilePath: \SFML-snake\src\screen\gameScreen.hpp
  * @Description:
  *
@@ -12,7 +12,7 @@
 #include "IScreen.hpp"
 #include "../entity/snakeManager.hpp"
 #include "../entity/foodManager.hpp"
-
+#include "../utils/Constants.hpp"
 class GameScreen : public IScreen
 {
 private:
@@ -36,6 +36,3 @@ public:
     GameScreen(GameScreen const &) = delete; // make sure no copies of SnakeManager may exist
     void operator=(GameScreen const &) = delete;
 };
-
-extern sf::Vector2i topLeft;
-extern sf::Vector2i buttomRight;

@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 12:28:45
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-12 14:31:23
+ * @LastEditTime: 2024-06-14 11:46:36
  * @FilePath: \SFML-snake\src\entity\snake.cpp
  * @Description:
  *
@@ -72,7 +72,7 @@ void Snake::update()
 {
     move();
     scaleUp();
-    Sprint();
+    // Sprint(); //only for log(great cost)
 }
 void Snake::move()
 {
@@ -111,9 +111,9 @@ void Snake::Sprint()
 {
     // for (const auto &a : snakeBody)
     // {
-    std::cout << "(" << snakeBody[0].x << "," << snakeBody[0].y << ")";
+    //std::cout << "(" << snakeBody[0].x << "," << snakeBody[0].y << ")";
     // }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 }
 void Snake::scaleUp()
 {

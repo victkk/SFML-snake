@@ -13,7 +13,7 @@ Button::Button(const std::string &buttonText)
 {
     if (!font.loadFromFile("../../resources/font/retro-pixel-font/arcade/retro-pixel-arcade.otf"))
     {
-        std::cout << "fuck! where is the font?(calling from button.cpp)";
+        // std::cout << "fuck! where is the font?(calling from button.cpp)";
     }
     text.setFont(font);
     text.setString(buttonText);
@@ -54,7 +54,7 @@ void Button::update(sf::RenderWindow &window, const sf::Time &dt)
     {
         // 这里可以放置点击后的处理逻辑
         isClicked = true;
-        std::cout << "Button clicked!" << std::endl;
+        // std::cout << "Button clicked!" << std::endl;
     }
     else
     {

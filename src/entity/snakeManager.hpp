@@ -10,7 +10,7 @@
  */
 #pragma once
 #include "snake.hpp"
-
+#include "../utils/Constants.hpp"
 class SnakeManager
 {
 private:
@@ -33,4 +33,3 @@ public:
     SnakeManager(SnakeManager const &) = delete; // make sure no copies of SnakeManager may exist
     void operator=(SnakeManager const &) = delete;
 };
-extern sf::Vector2i topLeft, buttomRight;

@@ -14,6 +14,7 @@
 #include <ctime>
 #include "../utils/utils.hpp"
 #include "snake.hpp"
+#include "../utils/Constants.hpp"
 class Food
 {
 private:
@@ -29,4 +30,3 @@ public:
     int getScore();
     void reborn();
 };
-extern sf::Vector2i buttomRight, topLeft;

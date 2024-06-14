@@ -1,3 +1,13 @@
+/*
+ * @Author: vic123 zhangzc_efz@163.com
+ * @Date: 2024-05-29 12:29:27
+ * @LastEditors: vic123 zhangzc_efz@163.com
+ * @LastEditTime: 2024-06-12 14:49:26
+ * @FilePath: \SFML-snake\src\entity\snake.hpp
+ * @Description:
+ *
+ * Copyright (c) 2024 by vic123, All Rights Reserved.
+ */
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -5,6 +15,7 @@
 #include <vector>
 #include <deque>
 #include "../utils/utils.hpp"
+#include "../utils/Constants.hpp"
 class Snake
 {
 private:
@@ -43,5 +54,3 @@ private:
     void scaleUp();
 };
 
-extern sf::Time timePerFrame;
-extern sf::Vector2i topLeft, buttomRight;

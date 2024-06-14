@@ -15,6 +15,7 @@
 #include "snakeManager.hpp"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "../utils/Constants.hpp"
 class FoodManager
 {
 private:

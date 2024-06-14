@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-30 11:23:58
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-05 17:20:44
+ * @LastEditTime: 2024-06-12 14:43:50
  * @FilePath: \SFML-snake\src\entity\foodManager.cpp
  * @Description:
  *
@@ -45,6 +45,6 @@ void FoodManager::update(std::vector<Snake> &snakes)
 
 FoodManager &FoodManager::getInstance()
 {
-    static FoodManager mFoodManager(1000);
+    static FoodManager mFoodManager(foodNum);
     return mFoodManager;
 }

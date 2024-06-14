@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-12 14:23:48
+ * @LastEditTime: 2024-06-14 14:36:51
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -36,11 +36,11 @@ void ScreenManager::run()
                 timeSinceLastUpdate -= timePerFrame;
             logTime = test_clock.restart();
             currentScreen->run(window);
-            logTime = test_clock.restart();
-            std::cout << "currentScreen.run:" << logTime.asMilliseconds() << std::endl;
+            // logTime = test_clock.restart();
+            // std::cout << "currentScreen.run:" << logTime.asMilliseconds() << std::endl;
             nextScreenLogic();
-            logTime = test_clock.restart();
-            std::cout << "nextScreenLogic:" << logTime.asMilliseconds() << std::endl;
+            // logTime = test_clock.restart();
+            // std::cout << "nextScreenLogic:" << logTime.asMilliseconds() << std::endl;
             while (window.pollEvent(event))
             {
                 switch (event.type)
@@ -54,14 +54,14 @@ void ScreenManager::run()
                 }
             }
             logTime = test_clock.restart();
-            std::cout << "pollevent:" << logTime.asMilliseconds() << std::endl;
+            std::cout << "pollevent:" << logTime.asMicroseconds() << std::endl;
         }
     }
 }
 
 void ScreenManager::nextScreenLogic()
 {
-    // double states stateMachine：outter nextScreen, inner currentScreen 
+    // double states stateMachine：outter nextScreen, inner currentScreen
     switch (currentScreen->nextScreenLogic(window))
     {
     case SCREEN::PAUSE:
