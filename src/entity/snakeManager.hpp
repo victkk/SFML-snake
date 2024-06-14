@@ -15,6 +15,7 @@ class SnakeManager
 {
 private:
     std::vector<Snake> snakes;
+    sf::Music music;
     bool humanPlayerAlive;
     void autoDrive(int xMin, int xMax, int yMin, int yMax);
     void deathJudge();

@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-11 15:50:46
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 17:01:01
+ * @LastEditTime: 2024-06-14 21:50:11
  * @FilePath: \SFML-snake\src\screen\deathScreen.cpp
  * @Description:
  *
@@ -18,6 +18,12 @@ DeathScreen::DeathScreen() : startMenuButton("MAINMENU"), restartButton("RESTART
     sNoob.setColor(sf::Color(0, 0, 0, transparent));
     sf::FloatRect spriteBounds = sNoob.getLocalBounds();
     sNoob.setOrigin(spriteBounds.width / 2, spriteBounds.height / 2);
+    if (!music.openFromFile("../../resources/audio/cai.ogg"))
+    {
+        {
+            std::cout << "fuck! where is cai.ogg?(calling from deathScreen.cpp)";
+        }
+    }
 }
 void DeathScreen::run(sf::RenderWindow &window)
 {
@@ -38,6 +44,10 @@ void DeathScreen::update()
     if (transparent > 255)
     {
         transparent = 0;
+    }
+    if (transparent == 1)
+    {
+        music.play();
     }
 }
 

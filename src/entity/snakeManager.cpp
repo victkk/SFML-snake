@@ -3,7 +3,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-05-29 22:57:14
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 16:17:54
+ * @LastEditTime: 2024-06-14 21:40:03
  * @FilePath: \SFML-snake\src\entity\snakeManager.cpp
  * @Description:
  *
@@ -19,6 +19,11 @@ SnakeManager::SnakeManager()
         snakes.emplace_back(false); // An auto snake
     }
     humanPlayerAlive = true;
+    if(!music.openFromFile("../../resources/audio/shutdown.ogg")){
+            {
+        std::cout << "fuck! where is shutdown.ogg?(calling from snakeManager.cpp)";
+    }
+    }
 }
 void SnakeManager::update()
 {
@@ -109,6 +114,9 @@ void SnakeManager::deathJudge()
                     itSubject->respawn();
                     // itSubject = snakes.erase(itSubject);
                     subjectKilled = true;
+                    if(itKiller->isHumanPlayer()){
+                        music.play();
+                    }
                     // std::cout << "KILLED!";
                     break;
                 }
@@ -199,7 +207,7 @@ void SnakeManager::followHumanPlayer(sf::RenderWindow &window)
     sf::View view = window.getView();
     for (auto &snake : snakes)
     {
-        if (snake.isHumanPlayer())
+        if (snake.isHumanPlayer() && humanPlayerAlive)
         {
             view.setCenter(snake.getHead());
         }

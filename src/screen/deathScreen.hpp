@@ -1,6 +1,7 @@
 #pragma once
 #include "IScreen.hpp"
 #include "../UI/button.hpp"
+#include <SFML/audio.hpp>
 class DeathScreen : public IScreen
 {
 private:
@@ -9,6 +10,7 @@ private:
     Button restartButton;
     sf::Texture texture;
     sf::Sprite sNoob;
+    sf::Music music;
     int transparent;
     DeathScreen();
 

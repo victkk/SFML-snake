@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-12 14:13:54
+ * @LastEditTime: 2024-06-14 21:20:46
  * @FilePath: \SFML-snake\src\screen\screenManager.hpp
  * @Description:
  *
@@ -14,6 +14,7 @@
 #include "startScreen.hpp"
 #include "deathScreen.hpp"
 #include "../utils/Constants.hpp"
+#include <SFML/Audio.hpp>
 class ScreenManager
 {
 private:
@@ -23,7 +24,7 @@ private:
     GameScreen &gameScreen;
     StartScreen &startScreen;
     DeathScreen &deathScreen;
-
+    sf::Music music;
 public:
     void run();
     static ScreenManager &getInstance();

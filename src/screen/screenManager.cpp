@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 16:58:21
+ * @LastEditTime: 2024-06-14 21:26:06
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -13,6 +13,17 @@
 ScreenManager::ScreenManager() : pauseScreen(PauseScreen::getInstance()), gameScreen(GameScreen::getInstance()), startScreen(StartScreen::getInstance()), deathScreen(DeathScreen::getInstance()), window(sf::VideoMode(800, 600), "SFML")
 {
     currentScreen = &startScreen;
+
+    if (!music.openFromFile("../../resources/audio/dabeizhou.ogg"))
+    {
+        {
+            std::cout << "fuck! where is dabeizhou.ogg?(calling from screenManager.cpp)";
+        }
+    }
+
+    music.setLoop(true);
+
+    music.play();
 }
 void ScreenManager::run()
 {
@@ -62,7 +73,7 @@ void ScreenManager::run()
                 }
             }
             logTime = test_clock.restart();
-            std::cout << "pollevent:" << logTime.asMicroseconds() << std::endl;
+            // std::cout << "pollevent:" << logTime.asMicroseconds() << std::endl;
         }
     }
 }

@@ -13,7 +13,7 @@ FetchContent_MakeAvailable(SFML)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(snake ${SOURCES})
-target_link_libraries(snake PRIVATE sfml-graphics)
+target_link_libraries(snake PRIVATE sfml-graphics sfml-audio)
 target_compile_features(snake PRIVATE cxx_std_17)
 
 if(WIN32)
