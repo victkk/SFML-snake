@@ -2,7 +2,7 @@
  * @Author: vic123 zhangzc_efz@163.com
  * @Date: 2024-06-01 15:50:53
  * @LastEditors: vic123 zhangzc_efz@163.com
- * @LastEditTime: 2024-06-14 21:26:06
+ * @LastEditTime: 2024-06-15 14:57:13
  * @FilePath: \SFML-snake\src\screen\screenManager.cpp
  * @Description:
  *
@@ -20,7 +20,7 @@ ScreenManager::ScreenManager() : pauseScreen(PauseScreen::getInstance()), gameSc
             std::cout << "fuck! where is dabeizhou.ogg?(calling from screenManager.cpp)";
         }
     }
-
+    music.setVolume(25);
     music.setLoop(true);
 
     music.play();
