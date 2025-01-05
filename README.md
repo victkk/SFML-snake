@@ -11,6 +11,7 @@
 # SFML SNAKE
 
 This is a repository for my PJ for OOP at Fudan University.
+![image](https://github.com/user-attachments/assets/17e3b7fb-2b45-4626-abcd-9a01d9a82324)
 
 DEMO：https://www.bilibili.com/video/BV1D3Vee6EoB
 
