@@ -10,7 +10,7 @@
 -->
 # SFML SNAKE
 
-This is a repository for my PJ of OOP at Fudan University.
+This is a repository for my PJ for OOP at Fudan University.
 
 DEMO：https://www.bilibili.com/video/BV1D3Vee6EoB
 
